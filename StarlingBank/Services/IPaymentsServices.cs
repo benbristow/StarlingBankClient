@@ -15,7 +15,8 @@ public interface IPaymentsServices
     /// <param name="paymentOrderUid">Required parameter: Payment Order uid</param>
     /// <returns>Task&lt;Models.StandingOrder&gt;.</returns>
     /// <return>Returns the Models.StandingOrder response from the API call</return>
-    Task<Models.StandingOrder> GetStandingOrderAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid paymentOrderUid);
+    Task<Models.StandingOrder> GetStandingOrderAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+        Guid paymentOrderUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -44,7 +45,8 @@ public interface IPaymentsServices
     /// <param name="paymentOrderUid">Required parameter: Payment order uid</param>
     /// <returns>Task.</returns>
     /// <return>Returns the void response from the API call</return>
-    Task CancelStandingOrderAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid paymentOrderUid);
+    Task CancelStandingOrderAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+        Guid paymentOrderUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -55,7 +57,8 @@ public interface IPaymentsServices
     /// <param name="categoryUid">Required parameter: Category uid</param>
     /// <returns>Task&lt;Models.StandingOrdersResponse&gt;.</returns>
     /// <return>Returns the Models.StandingOrdersResponse response from the API call</return>
-    Task<Models.StandingOrdersResponse> ListStandingOrdersAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid);
+    Task<Models.StandingOrdersResponse> ListStandingOrdersAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid categoryUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -67,7 +70,8 @@ public interface IPaymentsServices
     /// <param name="createStandingOrderRequest">Required parameter: Standing order creation object.</param>
     /// <returns>Task&lt;Models.CreateStandingOrderResponse&gt;.</returns>
     /// <return>Returns the Models.CreateStandingOrderResponse response from the API call</return>
-    Task<Models.CreateStandingOrderResponse> CreateStandingOrderAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+    Task<Models.CreateStandingOrderResponse> CreateStandingOrderAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid categoryUid,
         Models.CreateStandingOrderRequest createStandingOrderRequest);
 
     /// <summary>
@@ -86,7 +90,8 @@ public interface IPaymentsServices
     /// <param name="paymentOrderUid">Required parameter: Payment order uid</param>
     /// <returns>Task&lt;Models.PaymentOrderPaymentsResponse&gt;.</returns>
     /// <return>Returns the Models.PaymentOrderPaymentsResponse response from the API call</return>
-    Task<Models.PaymentOrderPaymentsResponse> GetPaymentOrderPaymentsAsync(StarlingClient starlingClient, Guid paymentOrderUid);
+    Task<Models.PaymentOrderPaymentsResponse> GetPaymentOrderPaymentsAsync(StarlingClient starlingClient,
+        Guid paymentOrderUid);
 
     /// <summary>
     /// N.B. if you're looking for only the next payment date, this is also returned when getting a standing order in the `StandingOrder` response from the field `nextDate`.
@@ -117,6 +122,7 @@ public interface IPaymentsServices
     /// <param name="instructLocalPaymentRequest">Required parameter: Payment instruction object.</param>
     /// <returns>Task&lt;Models.InstructLocalPaymentResponse&gt;.</returns>
     /// <return>Returns the Models.InstructLocalPaymentResponse response from the API call</return>
-    Task<Models.InstructLocalPaymentResponse> MakeLocalPaymentAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+    Task<Models.InstructLocalPaymentResponse> MakeLocalPaymentAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid categoryUid,
         Models.InstructLocalPaymentRequest instructLocalPaymentRequest);
 }

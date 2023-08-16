@@ -22,7 +22,8 @@ public interface IFeedRoundUpServices
     /// <param name="roundUpGoalPayload">Required parameter: Round-up goal</param>
     /// <returns>Task.</returns>
     /// <return>Returns the void response from the API call</return>
-    Task ActivateRoundUpGoalAsync(StarlingClient starlingClient, Guid accountUid, Models.RoundUpGoalPayload roundUpGoalPayload);
+    Task ActivateRoundUpGoalAsync(StarlingClient starlingClient, Guid accountUid,
+        Models.RoundUpGoalPayload roundUpGoalPayload);
 
     /// <summary>
     /// Deletes the round-up goal associated with an account if one exists

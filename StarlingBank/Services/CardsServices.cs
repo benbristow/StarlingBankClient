@@ -35,7 +35,6 @@ public class CardsServices : ICardsServices
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -52,19 +51,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/atm-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -83,19 +83,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -108,25 +109,27 @@ public class CardsServices : ICardsServices
     /// <param name="currencyFlag">Required parameter: Whether currency switch payments should be allowed for a given currency. Set to false to block, true to allow.</param>
     /// <returns>Task.</returns>
     /// <return>Returns the void response from the API call</return>
-    public async Task EnableCurrencySwitchAsync(StarlingClient starlingClient, Guid cardUid, Models.CurrencyFlag currencyFlag)
+    public async Task EnableCurrencySwitchAsync(StarlingClient starlingClient, Guid cardUid,
+        Models.CurrencyFlag currencyFlag)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/currency-switch");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(currencyFlag);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -145,19 +148,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/gambling-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -176,19 +180,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/mag-stripe-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -207,19 +212,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/mobile-wallet-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -238,19 +244,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/online-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -269,19 +276,20 @@ public class CardsServices : ICardsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/cards/{cardUid}/controls/pos-enabled");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"cardUid", cardUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "cardUid", cardUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(enabling);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -301,13 +309,13 @@ public class CardsServices : ICardsServices
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try

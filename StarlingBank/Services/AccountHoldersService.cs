@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,7 +34,6 @@ public class AccountHoldersService : IAccountHoldersService
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -53,12 +51,12 @@ public class AccountHoldersService : IAccountHoldersService
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //invoke request and get response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -87,12 +85,12 @@ public class AccountHoldersService : IAccountHoldersService
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try

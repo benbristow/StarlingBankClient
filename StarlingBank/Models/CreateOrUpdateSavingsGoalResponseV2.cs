@@ -18,15 +18,9 @@ public class CreateOrUpdateSavingsGoalResponseV2
     [JsonProperty("success")]
     public bool? Success { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("error")]
-    public List<ErrorDetail> Error { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("errors")]
-    public List<ErrorDetail> Errors { get; set; }
+    [JsonProperty("error")] public List<ErrorDetail> Error { get; set; }
+
+
+    [JsonProperty("errors")] public List<ErrorDetail> Errors { get; set; }
 }

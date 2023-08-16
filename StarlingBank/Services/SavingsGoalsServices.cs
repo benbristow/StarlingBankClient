@@ -35,7 +35,6 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -60,23 +59,21 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/add-money/{transferUid}");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}, {"transferUid", transferUid}});
+            new Dictionary<string, object>()
+                { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid }, { "transferUid", transferUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //append body params
         var body = APIHelper.JsonSerialize(topUpRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -99,28 +96,26 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.ScheduledSavingsPaymentV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.ScheduledSavingsPaymentV2 response from the API call</return>
-    public async Task<Models.ScheduledSavingsPaymentV2> GetRecurringTransferAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid)
+    public async Task<Models.ScheduledSavingsPaymentV2> GetRecurringTransferAsync(StarlingClient starlingClient,
+        Guid accountUid, Guid savingsGoalUid)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/recurring-transfer");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -144,7 +139,8 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.SavingsGoalTransferResponseV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.SavingsGoalTransferResponseV2 response from the API call</return>
-    public async Task<Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransferAsync(StarlingClient starlingClient, Guid accountUid,
+    public async Task<Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransferAsync(
+        StarlingClient starlingClient, Guid accountUid,
         Guid savingsGoalUid, Models.ScheduledSavingsPaymentRequestV2 scheduledSavingsPaymentRequest)
     {
         //prepare query string for API call
@@ -152,23 +148,20 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/recurring-transfer");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //append body params
         var body = APIHelper.JsonSerialize(scheduledSavingsPaymentRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -197,20 +190,17 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/recurring-transfer");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Delete, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -229,21 +219,19 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -266,30 +254,29 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.CreateOrUpdateSavingsGoalResponseV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.CreateOrUpdateSavingsGoalResponseV2 response from the API call</return>
-    public async Task<Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid,
+    public async Task<Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoalAsync(StarlingClient starlingClient,
+        Guid accountUid,
         Models.SavingsGoalRequestV2 savingsGoalRequest)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //append body params
         var body = APIHelper.JsonSerialize(savingsGoalRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -312,28 +299,26 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.SavingsGoalV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.SavingsGoalV2 response from the API call</return>
-    public async Task<Models.SavingsGoalV2> GetSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid)
+    public async Task<Models.SavingsGoalV2> GetSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid savingsGoalUid)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -357,7 +342,8 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.CreateOrUpdateSavingsGoalResponseV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.CreateOrUpdateSavingsGoalResponseV2 response from the API call</return>
-    public async Task<Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid,
+    public async Task<Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoalAsync(StarlingClient starlingClient,
+        Guid accountUid,
         Guid savingsGoalUid, Models.SavingsGoalRequestV2 savingsGoalRequest)
     {
         //prepare query string for API call
@@ -365,23 +351,20 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //append body params
         var body = APIHelper.JsonSerialize(savingsGoalRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -410,20 +393,17 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Delete, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -437,28 +417,26 @@ public class SavingsGoalsServices : ISavingsGoalsServices
     /// <returns>Task&lt;Models.SavingsGoalPhotoV2&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.SavingsGoalPhotoV2 response from the API call</return>
-    public async Task<Models.SavingsGoalPhotoV2> GetSavingsGoalPhotoAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid)
+    public async Task<Models.SavingsGoalPhotoV2> GetSavingsGoalPhotoAsync(StarlingClient starlingClient,
+        Guid accountUid, Guid savingsGoalUid)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/photo");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}});
+            new Dictionary<string, object>() { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -494,23 +472,21 @@ public class SavingsGoalsServices : ISavingsGoalsServices
         queryBuilder.Append("api/v2/account/{accountUid}/savings-goals/{savingsGoalUid}/withdraw-money/{transferUid}");
         //process optional template parameters
         APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
-            new Dictionary<string, object>() {{"accountUid", accountUid}, {"savingsGoalUid", savingsGoalUid}, {"transferUid", transferUid}});
+            new Dictionary<string, object>()
+                { { "accountUid", accountUid }, { "savingsGoalUid", savingsGoalUid }, { "transferUid", transferUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers)
-        {
-            request.Headers.Add(header.Key, header.Value);
-        }
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
 
         //append body params
         var body = APIHelper.JsonSerialize(withdrawalRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try

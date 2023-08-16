@@ -6,27 +6,15 @@ namespace StarlingBank.Models;
 
 public class ReceiptTaxDetail
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("receiptTaxDetailUid")]
-    public Guid? ReceiptTaxDetailUid { get; set; }
+    [JsonProperty("receiptTaxDetailUid")] public Guid? ReceiptTaxDetailUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("taxName")]
-    public string TaxName { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("taxValue")]
-    public double TaxValue { get; set; }
+    [JsonProperty("taxName")] public string TaxName { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
+    [JsonProperty("taxValue")] public double TaxValue { get; set; }
+
+
     [JsonProperty("taxCurrencyCode", ItemConverterType = typeof(StringValuedEnumConverter))]
     public TaxCurrencyCode TaxCurrencyCode { get; set; }
 

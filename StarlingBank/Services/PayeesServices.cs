@@ -40,7 +40,6 @@ public class PayeesServices : IPayeesServices
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -58,13 +57,13 @@ public class PayeesServices : IPayeesServices
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -86,7 +85,8 @@ public class PayeesServices : IPayeesServices
     /// <returns>Task&lt;Models.PayeeCreationResponse&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.PayeeCreationResponse response from the API call</return>
-    public async Task<Models.PayeeCreationResponse> CreatePayeeAsync(StarlingClient starlingClient, Models.PayeeCreationRequest payeeCreationRequest)
+    public async Task<Models.PayeeCreationResponse> CreatePayeeAsync(StarlingClient starlingClient,
+        Models.PayeeCreationRequest payeeCreationRequest)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
@@ -94,15 +94,15 @@ public class PayeesServices : IPayeesServices
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(payeeCreationRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -125,26 +125,28 @@ public class PayeesServices : IPayeesServices
     /// <returns>Task&lt;Models.PayeeAccountCreationResponse&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.PayeeAccountCreationResponse response from the API call</return>
-    public async Task<Models.PayeeAccountCreationResponse> CreatePayeeAccountAsync(StarlingClient starlingClient, Guid payeeUid,
+    public async Task<Models.PayeeAccountCreationResponse> CreatePayeeAccountAsync(StarlingClient starlingClient,
+        Guid payeeUid,
         Models.PayeeAccountCreationRequest payeeAccountCreationRequest)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}/account");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetContentRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(payeeAccountCreationRequest);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -171,16 +173,17 @@ public class PayeesServices : IPayeesServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Delete, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -199,16 +202,17 @@ public class PayeesServices : IPayeesServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}/account/{accountUid}");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}, {"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid }, { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Delete, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -222,23 +226,25 @@ public class PayeesServices : IPayeesServices
     /// <returns>Task&lt;Models.ScheduledPayments&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.ScheduledPayments response from the API call</return>
-    public async Task<Models.ScheduledPayments> ListPaymentOrdersForAccountAsync(StarlingClient starlingClient, Guid payeeUid, Guid accountUid)
+    public async Task<Models.ScheduledPayments> ListPaymentOrdersForAccountAsync(StarlingClient starlingClient,
+        Guid payeeUid, Guid accountUid)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}/account/{accountUid}/scheduled-payments");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}, {"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid }, { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -262,26 +268,29 @@ public class PayeesServices : IPayeesServices
     /// <returns>Task&lt;Models.Payments&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.Payments response from the API call</return>
-    public async Task<Models.Payments> ListPaymentsForPayeeAccountAsync(StarlingClient starlingClient, Guid payeeUid, Guid accountUid, DateTime since)
+    public async Task<Models.Payments> ListPaymentsForPayeeAccountAsync(StarlingClient starlingClient, Guid payeeUid,
+        Guid accountUid, DateTime since)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}/account/{accountUid}/payments");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}, {"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid }, { "accountUid", accountUid } });
         //process optional query parameters
-        APIHelper.AppendUrlWithQueryParameters(queryBuilder, new Dictionary<string, object>() {{"since", since.ToString("yyyy'-'MM'-'dd")}},
+        APIHelper.AppendUrlWithQueryParameters(queryBuilder,
+            new Dictionary<string, object>() { { "since", since.ToString("yyyy'-'MM'-'dd") } },
             _arrayDeserializationFormat);
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -309,17 +318,18 @@ public class PayeesServices : IPayeesServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/payees/{payeeUid}/image");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"payeeUid", payeeUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "payeeUid", payeeUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try

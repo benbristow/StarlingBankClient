@@ -342,7 +342,10 @@ public static class SourceHelper
     /// </summary>
     /// <param name="enumValues">The list of Source values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Source> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Source> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Source value

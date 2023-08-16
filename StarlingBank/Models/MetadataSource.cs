@@ -36,7 +36,7 @@ public static class MetadataSourceHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"CUSTOMER", "STARLING", "PARTNER"};
+    private static readonly List<string> StringValues = new() { "CUSTOMER", "STARLING", "PARTNER" };
 
     /// <summary>
     /// Converts a MetadataSource value to a corresponding string value
@@ -64,7 +64,10 @@ public static class MetadataSourceHelper
     /// </summary>
     /// <param name="enumValues">The list of MetadataSource values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<MetadataSource> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<MetadataSource> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into MetadataSource value

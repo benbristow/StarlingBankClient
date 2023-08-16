@@ -31,7 +31,7 @@ public static class AttachmentTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"image, pdf"};
+    private static readonly List<string> StringValues = new() { "image, pdf" };
 
     /// <summary>
     /// Converts a AttachmentType value to a corresponding string value
@@ -58,7 +58,10 @@ public static class AttachmentTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of AttachmentType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<AttachmentType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<AttachmentType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into AttachmentType value

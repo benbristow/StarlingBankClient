@@ -57,9 +57,7 @@ public class FeedItem
     [JsonProperty("settlementTime")]
     public DateTime? SettlementTime { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonConverter(typeof(IsoDateTimeConverter))]
     [JsonProperty("retryAllocationUntilTime")]
     public DateTime? RetryAllocationUntilTime { get; set; }
@@ -130,17 +128,11 @@ public class FeedItem
     [JsonProperty("counterPartySubEntitySubIdentifier")]
     public string CounterPartySubEntitySubIdentifier { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("exchangeRate")]
-    public double? ExchangeRate { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("totalFees")]
-    public double? TotalFees { get; set; }
+    [JsonProperty("exchangeRate")] public double? ExchangeRate { get; set; }
+
+
+    [JsonProperty("totalFees")] public double? TotalFees { get; set; }
 
     /// <summary>
     /// Representation of money

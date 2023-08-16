@@ -39,5 +39,6 @@ public interface IDirectDebitMandatesServices
     /// <param name="since">Required parameter: Start date for a transaction history</param>
     /// <returns>Task&lt;Models.DirectDebitPaymentsResponse&gt;.</returns>
     /// <return>Returns the Models.DirectDebitPaymentsResponse response from the API call</return>
-    Task<Models.DirectDebitPaymentsResponse> ListPaymentsForMandateAsync(StarlingClient starlingClient, Guid mandateUid, DateTime since);
+    Task<Models.DirectDebitPaymentsResponse> ListPaymentsForMandateAsync(StarlingClient starlingClient, Guid mandateUid,
+        DateTime since);
 }

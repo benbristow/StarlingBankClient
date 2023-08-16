@@ -33,7 +33,8 @@ public interface IAccountsService
     /// <param name="end">Optional parameter: Example:</param>
     /// <returns>Task&lt;Stream&gt;.</returns>
     /// <return>Returns the Stream response from the API call</return>
-    Task<Stream> DownloadPDFStatementForDateRangeAsync(StarlingClient starlingClient, Guid accountUid, DateTime start, DateTime? end = null);
+    Task<Stream> DownloadPDFStatementForDateRangeAsync(StarlingClient starlingClient, Guid accountUid, DateTime start,
+        DateTime? end = null);
 
     /// <summary>
     /// The balance of the account holder's account is expressed in two ways: cleared balance and effective balance.
@@ -83,5 +84,6 @@ public interface IAccountsService
     /// <param name="targetAmountInMinorUnits">Required parameter: Target amount in minor units</param>
     /// <returns>Task&lt;Models.ConfirmationOfFundsResponse&gt;.</returns>
     /// <return>Returns the Models.ConfirmationOfFundsResponse response from the API call</return>
-    Task<ConfirmationOfFundsResponse> GetConfirmationOfFundsAsync(StarlingClient starlingClient, Guid accountUid, long targetAmountInMinorUnits);
+    Task<ConfirmationOfFundsResponse> GetConfirmationOfFundsAsync(StarlingClient starlingClient, Guid accountUid,
+        long targetAmountInMinorUnits);
 }

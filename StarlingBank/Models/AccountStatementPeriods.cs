@@ -8,9 +8,6 @@ namespace StarlingBank.Models;
 /// </summary>
 public class AccountStatementPeriods
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
     /// <value>The periods.</value>
     [JsonProperty("periods")]
     public List<AccountStatementPeriod> Periods { get; set; }

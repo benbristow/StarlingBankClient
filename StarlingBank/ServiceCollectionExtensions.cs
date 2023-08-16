@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using StarlingBank.Services;
+
 namespace StarlingBank;
 
 public static class ServiceCollectionExtensions

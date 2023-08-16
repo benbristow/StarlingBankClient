@@ -35,7 +35,6 @@ public class RecurringCardPaymentsServices : IRecurringCardPaymentsServices
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -46,23 +45,25 @@ public class RecurringCardPaymentsServices : IRecurringCardPaymentsServices
     /// <returns>Task&lt;Models.RecurringCardPayment&gt;.</returns>
     /// <exception cref="IBaseServices baseServices)">Failed to parse the response: " + ex.Message</exception>
     /// <return>Returns the Models.RecurringCardPayment response from the API call</return>
-    public async Task<Models.RecurringCardPayment> ListRecurringPaymentsAsync(StarlingClient starlingClient, Guid accountUid)
+    public async Task<Models.RecurringCardPayment> ListRecurringPaymentsAsync(StarlingClient starlingClient,
+        Guid accountUid)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/accounts/{accountUid}/recurring-payment");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try

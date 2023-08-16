@@ -35,7 +35,6 @@ public class FeedRoundUpServices : IFeedRoundUpServices
     {
         _clientFactory = clientFactory;
         _baseServices = baseServices;
-
     }
 
     /// <summary>
@@ -52,17 +51,18 @@ public class FeedRoundUpServices : IFeedRoundUpServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/feed/account/{accountUid}/round-up");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Get, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
+        var client = _clientFactory.CreateClient("StarlingBank");
         //invoke request and get response
-        HttpResponseMessage response = await client.SendAsync(request);
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
         try
@@ -84,25 +84,27 @@ public class FeedRoundUpServices : IFeedRoundUpServices
     /// <param name="roundUpGoalPayload">Required parameter: Round-up goal</param>
     /// <returns>Task.</returns>
     /// <return>Returns the void response from the API call</return>
-    public async Task ActivateRoundUpGoalAsync(StarlingClient starlingClient, Guid accountUid, Models.RoundUpGoalPayload roundUpGoalPayload)
+    public async Task ActivateRoundUpGoalAsync(StarlingClient starlingClient, Guid accountUid,
+        Models.RoundUpGoalPayload roundUpGoalPayload)
     {
         //prepare query string for API call
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/feed/account/{accountUid}/round-up");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient);
+        var headers = APIHelper.GetRequestHeaders(starlingClient);
         var request = new HttpRequestMessage(HttpMethod.Put, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //append body params
         var body = APIHelper.JsonSerialize(roundUpGoalPayload);
         request.Content = new StringContent(body);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }
@@ -120,16 +122,17 @@ public class FeedRoundUpServices : IFeedRoundUpServices
         var queryBuilder = new StringBuilder();
         queryBuilder.Append("api/v2/feed/account/{accountUid}/round-up");
         //process optional template parameters
-        APIHelper.AppendUrlWithTemplateParameters(queryBuilder, new Dictionary<string, object>() {{"accountUid", accountUid}});
+        APIHelper.AppendUrlWithTemplateParameters(queryBuilder,
+            new Dictionary<string, object>() { { "accountUid", accountUid } });
         //validate and preprocess url
         var queryUrl = APIHelper.GetUrl(starlingClient, queryBuilder);
         //append request with appropriate headers and parameters
-        Dictionary<string, string> headers = APIHelper.GetRequestHeaders(starlingClient, true);
+        var headers = APIHelper.GetRequestHeaders(starlingClient, true);
         var request = new HttpRequestMessage(HttpMethod.Delete, queryUrl);
-        foreach (KeyValuePair<string, string> header in headers) request.Headers.Add(header.Key, header.Value);
+        foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
         //prepare the API call request to fetch the response
-        HttpClient client = _clientFactory.CreateClient("StarlingBank");
-        HttpResponseMessage response = await client.SendAsync(request);
+        var client = _clientFactory.CreateClient("StarlingBank");
+        var response = await client.SendAsync(request);
         //handle errors defined at the API level
         await _baseServices.ValidateResponse(request, response);
     }

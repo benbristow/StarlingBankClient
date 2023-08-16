@@ -11,9 +11,7 @@ public class CreateStandingOrderRequest
     [JsonProperty("externalIdentifier")]
     public string ExternalIdentifier { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("destinationPayeeAccountUid")]
     public Guid DestinationPayeeAccountUid { get; set; }
 

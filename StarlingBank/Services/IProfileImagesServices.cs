@@ -23,7 +23,8 @@ public interface IProfileImagesServices
     /// <param name="inputStream">Required parameter: Attachment input stream</param>
     /// <returns>Task.</returns>
     /// <return>Returns the void response from the API call</return>
-    Task UpdateProfileImageAsync(StarlingClient starlingClient, Guid accountHolderUid, string contentType, object inputStream);
+    Task UpdateProfileImageAsync(StarlingClient starlingClient, Guid accountHolderUid, string contentType,
+        object inputStream);
 
     /// <summary>
     /// Delete a profile image if one exists

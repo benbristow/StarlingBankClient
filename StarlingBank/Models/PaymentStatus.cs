@@ -36,7 +36,7 @@ public static class PaymentStatusHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"ACCEPTED", "REJECTED", "PENDING"};
+    private static readonly List<string> StringValues = new() { "ACCEPTED", "REJECTED", "PENDING" };
 
     /// <summary>
     /// Converts a PaymentStatus value to a corresponding string value
@@ -64,7 +64,10 @@ public static class PaymentStatusHelper
     /// </summary>
     /// <param name="enumValues">The list of PaymentStatus values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<PaymentStatus> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<PaymentStatus> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into PaymentStatus value

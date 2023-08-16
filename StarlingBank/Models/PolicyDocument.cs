@@ -36,7 +36,8 @@ public static class PolicyDocumentHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"ACCOUNT_TERMS", "STARLING_PRIVACY_POLICY", "FSCS_INFORMATION"};
+    private static readonly List<string> StringValues = new()
+        { "ACCOUNT_TERMS", "STARLING_PRIVACY_POLICY", "FSCS_INFORMATION" };
 
     /// <summary>
     /// Converts a PolicyDocument value to a corresponding string value
@@ -64,7 +65,10 @@ public static class PolicyDocumentHelper
     /// </summary>
     /// <param name="enumValues">The list of PolicyDocument values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<PolicyDocument> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<PolicyDocument> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into PolicyDocument value

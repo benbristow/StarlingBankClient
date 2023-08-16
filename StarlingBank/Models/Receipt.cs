@@ -6,35 +6,20 @@ namespace StarlingBank.Models;
 
 public class Receipt
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("receiptUid")]
-    public Guid? ReceiptUid { get; set; }
+    [JsonProperty("receiptUid")] public Guid? ReceiptUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("feedItemUid")]
-    public Guid? FeedItemUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+    [JsonProperty("feedItemUid")] public Guid? FeedItemUid { get; set; }
+
+
     [JsonProperty("metadataSource", ItemConverterType = typeof(StringValuedEnumConverter))]
     public MetadataSource MetadataSource { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("receiptIdentifier")]
-    public string ReceiptIdentifier { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("totalAmount")]
-    public double TotalAmount { get; set; }
+    [JsonProperty("receiptIdentifier")] public string ReceiptIdentifier { get; set; }
+
+
+    [JsonProperty("totalAmount")] public double TotalAmount { get; set; }
 
     /// <summary>
     /// Receipt Merchant Information
@@ -48,33 +33,18 @@ public class Receipt
     [JsonProperty("currencyCode", ItemConverterType = typeof(StringValuedEnumConverter))]
     public CurrencyCode? CurrencyCode { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("items")]
-    public List<ReceiptItem> Items { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("notes")]
-    public List<ReceiptNote> Notes { get; set; }
+    [JsonProperty("items")] public List<ReceiptItem> Items { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("taxDetails")]
-    public List<ReceiptTaxDetail> TaxDetails { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("paymentMethods")]
-    public List<ReceiptPaymentMethod> PaymentMethods { get; set; }
+    [JsonProperty("notes")] public List<ReceiptNote> Notes { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("providerName")]
-    public string ProviderName { get; set; }
+
+    [JsonProperty("taxDetails")] public List<ReceiptTaxDetail> TaxDetails { get; set; }
+
+
+    [JsonProperty("paymentMethods")] public List<ReceiptPaymentMethod> PaymentMethods { get; set; }
+
+
+    [JsonProperty("providerName")] public string ProviderName { get; set; }
 }

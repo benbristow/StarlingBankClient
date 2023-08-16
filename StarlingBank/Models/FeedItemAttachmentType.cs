@@ -36,7 +36,7 @@ public static class FeedItemAttachmentTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"IMAGE", "PDF", "IMAGE, PDF"};
+    private static readonly List<string> StringValues = new() { "IMAGE", "PDF", "IMAGE, PDF" };
 
     /// <summary>
     /// Converts a FeedItemAttachmentType value to a corresponding string value
@@ -64,7 +64,10 @@ public static class FeedItemAttachmentTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of FeedItemAttachmentType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<FeedItemAttachmentType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<FeedItemAttachmentType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into FeedItemAttachmentType value

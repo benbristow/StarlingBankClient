@@ -31,7 +31,7 @@ public static class PayeeTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"BUSINESS", "INDIVIDUAL"};
+    private static readonly List<string> StringValues = new() { "BUSINESS", "INDIVIDUAL" };
 
     /// <summary>
     /// Converts a PayeeType value to a corresponding string value
@@ -58,7 +58,10 @@ public static class PayeeTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of PayeeType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<PayeeType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<PayeeType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into PayeeType value

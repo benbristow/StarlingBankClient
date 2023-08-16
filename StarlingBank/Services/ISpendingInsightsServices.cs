@@ -14,7 +14,8 @@ public interface ISpendingInsightsServices
     /// <param name="month">Required parameter: Month</param>
     /// <returns>Task&lt;Models.SpendingCounterPartySummary&gt;.</returns>
     /// <return>Returns the Models.SpendingCounterPartySummary response from the API call</return>
-    Task<Models.SpendingCounterPartySummary> QuerySpendingInsightsByCounterpartyAsync(StarlingClient starlingClient, Guid accountUid, string year,
+    Task<Models.SpendingCounterPartySummary> QuerySpendingInsightsByCounterpartyAsync(StarlingClient starlingClient,
+        Guid accountUid, string year,
         Models.Month month);
 
     /// <summary>
@@ -27,7 +28,8 @@ public interface ISpendingInsightsServices
     /// <returns>Task&lt;Models.SpendingCountrySummary&gt;.</returns>
     /// <return>Returns the Models.SpendingCountrySummary response from the API call</return>
     Task<Models.SpendingCountrySummary>
-        QuerySpendingInsightsByCountryAsync(StarlingClient starlingClient, Guid accountUid, string year, Models.Month month);
+        QuerySpendingInsightsByCountryAsync(StarlingClient starlingClient, Guid accountUid, string year,
+            Models.Month month);
 
     /// <summary>
     /// Get the spending insights grouped by spending category
@@ -38,6 +40,7 @@ public interface ISpendingInsightsServices
     /// <param name="month">Required parameter: Month</param>
     /// <returns>Task&lt;Models.SpendingCategorySummary&gt;.</returns>
     /// <return>Returns the Models.SpendingCategorySummary response from the API call</return>
-    Task<Models.SpendingCategorySummary> QuerySpendingInsightsBySpendingCategoryAsync(StarlingClient starlingClient, Guid accountUid, string year,
+    Task<Models.SpendingCategorySummary> QuerySpendingInsightsBySpendingCategoryAsync(StarlingClient starlingClient,
+        Guid accountUid, string year,
         Models.Month month);
 }

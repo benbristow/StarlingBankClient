@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using FluentValidation;
 
 namespace StarlingBank.Models;
@@ -14,22 +12,26 @@ public class StatementParameters
     /// <summary>
     /// Prevents a default instance of the <see cref="StatementParameters"/> class from being created.
     /// </summary>
-    private StatementParameters() { }
+    private StatementParameters()
+    {
+    }
+
     /// <summary>
     /// Gets the builder.
     /// </summary>
     /// <value>The builder.</value>
     public static StatementParametersBuilder Builder => new();
+
     /// <summary>
     /// Class StatementParametersBuilder.
     /// </summary>
     public class StatementParametersBuilder
     {
-
         /// <summary>
         /// The starling client
         /// </summary>
         private StarlingClient _starlingClient;
+
         /// <summary>
         /// Starlings the client.
         /// </summary>
@@ -46,6 +48,7 @@ public class StatementParameters
         /// The account uid
         /// </summary>
         private Guid _accountUid;
+
         /// <summary>
         /// Accounts the uid.
         /// </summary>
@@ -62,6 +65,7 @@ public class StatementParameters
         /// The year
         /// </summary>
         private string _year;
+
         /// <summary>
         /// Years the specified year.
         /// </summary>
@@ -78,6 +82,7 @@ public class StatementParameters
         /// The month
         /// </summary>
         private string _month;
+
         /// <summary>
         /// Monthes the specified month.
         /// </summary>
@@ -93,6 +98,7 @@ public class StatementParameters
         /// The statement type
         /// </summary>
         private StatementType _statementType;
+
         /// <summary>
         /// Statements the type.
         /// </summary>
@@ -113,6 +119,7 @@ public class StatementParameters
         {
             return ValidStatementParameters();
         }
+
         /// <summary>
         /// Valids the statement parameters.
         /// </summary>
@@ -125,11 +132,10 @@ public class StatementParameters
                 StarlingClient = _starlingClient,
                 AccountUid = _accountUid,
                 Year = _year,
-                Month = _month,
+                Month = _month
             };
             validator.ValidateAndThrow(statementArgument);
             return statementArgument;
-
         }
     }
 
@@ -147,9 +153,10 @@ public class StatementParameters
         {
             RuleFor(x => x.StarlingClient).NotNull();
             RuleFor(x => x.AccountUid).NotNull();
-            RuleFor(x => x.Year).NotNull().NotEmpty().WithMessage("Year is required eg 2021.").MinimumLength(4).MaximumLength(4);
-            RuleFor(x => x.Month).NotNull().NotEmpty().WithMessage("Month is required eg 01.").MinimumLength(2).MaximumLength(2);
-
+            RuleFor(x => x.Year).NotNull().NotEmpty().WithMessage("Year is required eg 2021.").MinimumLength(4)
+                .MaximumLength(4);
+            RuleFor(x => x.Month).NotNull().NotEmpty().WithMessage("Month is required eg 01.").MinimumLength(2)
+                .MaximumLength(2);
         }
     }
 

@@ -19,5 +19,6 @@ public interface IOnboardingServices
     /// <param name="onboardingRequest">Required parameter: Account onboarding request</param>
     /// <returns>Task&lt;Models.OnboardingResponse&gt;.</returns>
     /// <return>Returns the Models.OnboardingResponse response from the API call</return>
-    Task<Models.OnboardingResponse> OnboardAsync(StarlingClient starlingClient, Models.OnboardingRequest onboardingRequest);
+    Task<Models.OnboardingResponse> OnboardAsync(StarlingClient starlingClient,
+        Models.OnboardingRequest onboardingRequest);
 }

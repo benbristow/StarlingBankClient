@@ -7,9 +7,6 @@ namespace StarlingBank.Models;
 /// </summary>
 public class AccountIdentifier
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
     /// <value>The type of the identifier.</value>
     [JsonProperty("identifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public IdentifierType? IdentifierType { get; set; }

@@ -244,7 +244,10 @@ public static class TypeHelper
     /// </summary>
     /// <param name="enumValues">The list of Type values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Type> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Type> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Type value

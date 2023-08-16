@@ -2778,7 +2778,10 @@ public static class BusinessSubCategoryHelper
     /// </summary>
     /// <param name="enumValues">The list of BusinessSubCategory values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<BusinessSubCategory> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<BusinessSubCategory> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into BusinessSubCategory value

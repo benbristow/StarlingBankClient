@@ -5,27 +5,14 @@ namespace StarlingBank.Models;
 
 public class ReceiptNote
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("noteUid")]
-    public Guid? NoteUid { get; set; }
+    [JsonProperty("noteUid")] public Guid? NoteUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("title")]
-    public string Title { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("description")]
-    public string Description { get; set; }
+    [JsonProperty("title")] public string Title { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("url")]
-    public string Url { get; set; }
+
+    [JsonProperty("description")] public string Description { get; set; }
+
+
+    [JsonProperty("url")] public string Url { get; set; }
 }

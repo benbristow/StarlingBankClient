@@ -8,9 +8,6 @@ namespace StarlingBank.Models;
 /// </summary>
 public class Accounts
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
     /// <value>The accounts value.</value>
     [JsonProperty("accounts")]
     public List<AccountV2> AccountsValue { get; set; }

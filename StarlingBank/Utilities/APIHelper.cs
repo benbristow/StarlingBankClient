@@ -10,13 +10,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using StarlingBank.Models;
-using Type = System.Type;
+
 namespace StarlingBank.Utilities;
 
 public static class APIHelper
 {
     //DateTime format to use for parsing and converting dates
     public static string DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.FFFFFFFK";
+
     /// <summary>
     /// JSON Serialization of a given object.
     /// </summary>
@@ -37,6 +38,7 @@ public static class APIHelper
             settings.Converters.Add(converter);
         return JsonConvert.SerializeObject(obj, Formatting.None, settings);
     }
+
     /// <summary>
     /// JSON Deserialization of the given json string.
     /// </summary>
@@ -47,12 +49,13 @@ public static class APIHelper
     public static T JsonDeserialize<T>(string json, JsonConverter converter = null)
     {
         if (string.IsNullOrWhiteSpace(json))
-            return default(T);
+            return default;
         if (converter == null)
             return JsonConvert.DeserializeObject<T>(json, new IsoDateTimeConverter());
         else
             return JsonConvert.DeserializeObject<T>(json, converter);
     }
+
     /// <summary>
     /// Replaces template parameters in the given url
     /// </summary>
@@ -67,7 +70,7 @@ public static class APIHelper
         if (null == parameters)
             return;
         //iterate and replace parameters
-        foreach (KeyValuePair<string, object> pair in parameters)
+        foreach (var pair in parameters)
         {
             var replaceValue = string.Empty;
             //load element value as string
@@ -86,13 +89,15 @@ public static class APIHelper
             queryBuilder.Replace($"{{{pair.Key}}}", replaceValue);
         }
     }
+
     /// <summary>
     /// Appends the given set of parameters to the given query string
     /// </summary>
     /// <param name="queryUrl">The query url string to append the parameters</param>
     /// <param name="parameters">The parameters to append</param>
     public static void AppendUrlWithQueryParameters
-        (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UN_INDEXED, char separator = '&')
+    (StringBuilder queryBuilder, IEnumerable<KeyValuePair<string, object>> parameters,
+        ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UN_INDEXED, char separator = '&')
     {
         //perform parameter validation
         if (null == queryBuilder)
@@ -100,31 +105,34 @@ public static class APIHelper
         if (null == parameters)
             return;
         //does the query string already has parameters
-        var hasParams = (IndexOf(queryBuilder, "?") > 0);
+        var hasParams = IndexOf(queryBuilder, "?") > 0;
         //iterate and append parameters
-        foreach (KeyValuePair<string, object> pair in parameters)
+        foreach (var pair in parameters)
         {
             //ignore null values
             if (pair.Value == null)
                 continue;
             //if already has parameters, use the &amp; to append new parameters
-            queryBuilder.Append((hasParams) ? '&' : '?');
+            queryBuilder.Append(hasParams ? '&' : '?');
             //indicate that now the query has some params
             hasParams = true;
             string paramKeyValPair;
             //load element value as string
             if (pair.Value is ICollection)
-                paramKeyValPair = flattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator, true, pair.Key);
+                paramKeyValPair = flattenCollection(pair.Value as ICollection, arrayDeserializationFormat, separator,
+                    true, pair.Key);
             else if (pair.Value is DateTime)
                 paramKeyValPair = $"{Uri.EscapeDataString(pair.Key)}={((DateTime)pair.Value).ToString(DateTimeFormat)}";
             else if (pair.Value is DateTimeOffset)
-                paramKeyValPair = $"{Uri.EscapeDataString(pair.Key)}={((DateTimeOffset)pair.Value).ToString(DateTimeFormat)}";
+                paramKeyValPair =
+                    $"{Uri.EscapeDataString(pair.Key)}={((DateTimeOffset)pair.Value).ToString(DateTimeFormat)}";
             else
                 paramKeyValPair = $"{Uri.EscapeDataString(pair.Key)}={Uri.EscapeDataString(pair.Value.ToString())}";
             //append keyval pair for current parameter
             queryBuilder.Append(paramKeyValPair);
         }
     }
+
     /// <summary>
     /// StringBuilder extension method to implement IndexOf functionality.
     /// This does a StringComparison.Ordinal kind of comparison.
@@ -144,16 +152,18 @@ public static class APIHelper
             int matchCounter;
             //attempt to locate a potential match
             for (matchCounter = 0;
-                 (matchCounter < strCheck.Length)
-                 && (inputCounter + matchCounter < stringBuilder.Length)
-                 && (stringBuilder[inputCounter + matchCounter] == strCheck[matchCounter]);
+                 matchCounter < strCheck.Length
+                 && inputCounter + matchCounter < stringBuilder.Length
+                 && stringBuilder[inputCounter + matchCounter] == strCheck[matchCounter];
                  matchCounter++) ;
             //verify the match
             if (matchCounter == strCheck.Length)
                 return inputCounter;
         }
+
         return -1;
     }
+
     /// <summary>
     /// Validates and processes the given query Url to clean empty slashes
     /// </summary>
@@ -162,10 +172,12 @@ public static class APIHelper
     public static string GetUrl(StarlingClient starlingClient, StringBuilder queryBuilder)
     {
         //convert to immutable string
-        var baseUrl = starlingClient.Environment == ServerEnvironment.PRODUCTION ? "https://api.starlingbank.com/" : "https://api-sandbox.starlingbank.com/";
+        var baseUrl = starlingClient.Environment == ServerEnvironment.PRODUCTION
+            ? "https://api.starlingbank.com/"
+            : "https://api-sandbox.starlingbank.com/";
         var url = baseUrl + queryBuilder.ToString();
         //ensure that the urls are absolute
-        Match match = Regex.Match(url, "^https?://[^/]+");
+        var match = Regex.Match(url, "^https?://[^/]+");
         if (!match.Success)
             throw new ArgumentException("Invalid Url format.");
         //remove redundant forward slashes
@@ -175,8 +187,10 @@ public static class APIHelper
         query = Regex.Replace(query, "//+", "/");
         var parameters = index == -1 ? "" : url.Substring(index);
         //return process url
-        return string.Concat(protocol, query, parameters);;
+        return string.Concat(protocol, query, parameters);
+        ;
     }
+
     /// <summary>
     /// Used for flattening a collection of objects into a string 
     /// </summary>
@@ -190,11 +204,17 @@ public static class APIHelper
         var builder = new StringBuilder();
         var format = string.Empty;
         if (fmt == ArrayDeserialization.UN_INDEXED)
+        {
             format = $"{key}[]={{0}}{{1}}";
+        }
         else if (fmt == ArrayDeserialization.INDEXED)
+        {
             format = $"{key}[{{2}}]={{0}}{{1}}";
+        }
         else if (fmt == ArrayDeserialization.PLAIN)
+        {
             format = $"{key}={{0}}{{1}}";
+        }
         else if (fmt == ArrayDeserialization.CSV || fmt == ArrayDeserialization.PSV ||
                  fmt == ArrayDeserialization.TSV)
         {
@@ -202,16 +222,20 @@ public static class APIHelper
             format = "{0}{1}";
         }
         else
+        {
             format = "{0}{1}";
+        }
+
         //append all elements in the array into a string
         var index = 0;
         foreach (var element in array)
             builder.AppendFormat(format, getElementValue(element, urlEncode), separator, index++);
         //remove the last separator, if appended
-        if ((builder.Length > 1) && (builder[builder.Length - 1] == separator))
+        if (builder.Length > 1 && builder[builder.Length - 1] == separator)
             builder.Length -= 1;
         return builder.ToString();
     }
+
     private static string getElementValue(object element, bool urlEncode)
     {
         string elemValue = null;
@@ -219,17 +243,19 @@ public static class APIHelper
         if (null == element)
             elemValue = string.Empty;
         else if (element is DateTime)
-            elemValue = ((DateTime) element).ToString(DateTimeFormat);
+            elemValue = ((DateTime)element).ToString(DateTimeFormat);
         else if (element is DateTimeOffset)
-            elemValue = ((DateTimeOffset) element).ToString(DateTimeFormat);
+            elemValue = ((DateTimeOffset)element).ToString(DateTimeFormat);
         else
             elemValue = element.ToString();
         if (urlEncode)
             elemValue = Uri.EscapeDataString(elemValue);
         return elemValue;
     }
+
     public static List<KeyValuePair<string, object>> PrepareFormFieldsFromObject(
-        string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null, ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UN_INDEXED)
+        string name, object value, List<KeyValuePair<string, object>> keys = null, PropertyInfo propInfo = null,
+        ArrayDeserialization arrayDeserializationFormat = ArrayDeserialization.UN_INDEXED)
     {
         keys = keys ?? new List<KeyValuePair<string, object>>();
         if (value == null)
@@ -238,33 +264,35 @@ public static class APIHelper
         }
         else if (value is Stream)
         {
-            keys.Add(new KeyValuePair<string, object>(name,value));
+            keys.Add(new KeyValuePair<string, object>(name, value));
             return keys;
         }
         else if (value is JObject)
         {
-            var valueAccept = (value as JObject);
+            var valueAccept = value as JObject;
             foreach (var property in valueAccept.Properties())
             {
                 var pKey = property.Name;
                 object pValue = property.Value;
                 var fullSubName = name + '[' + pKey + ']';
-                PrepareFormFieldsFromObject(fullSubName, pValue, keys, propInfo,arrayDeserializationFormat);
+                PrepareFormFieldsFromObject(fullSubName, pValue, keys, propInfo, arrayDeserializationFormat);
             }
         }
         else if (value is IList)
         {
-            var enumerator = ((IEnumerable) value).GetEnumerator();
+            var enumerator = ((IEnumerable)value).GetEnumerator();
             var hasNested = false;
             while (enumerator.MoveNext())
             {
                 var subValue = enumerator.Current;
-                if (subValue != null && (subValue is JObject || subValue is IList || subValue is IDictionary || !(subValue.GetType().Namespace.StartsWith("System"))))
+                if (subValue != null && (subValue is JObject || subValue is IList || subValue is IDictionary ||
+                                         !subValue.GetType().Namespace.StartsWith("System")))
                 {
                     hasNested = true;
                     break;
                 }
             }
+
             var i = 0;
             enumerator.Reset();
             while (enumerator.MoveNext())
@@ -276,7 +304,7 @@ public static class APIHelper
                     fullSubName = name;
                 var subValue = enumerator.Current;
                 if (subValue == null) continue;
-                PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
+                PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo, arrayDeserializationFormat);
                 i++;
             }
         }
@@ -286,31 +314,32 @@ public static class APIHelper
         }
         else if (value is Enum)
         {
-            Assembly thisAssembly = typeof(APIHelper).GetTypeInfo().Assembly;
+            var thisAssembly = typeof(APIHelper).GetTypeInfo().Assembly;
             var enumTypeName = value.GetType().FullName;
-            Type enumHelperType = thisAssembly.GetType($"{enumTypeName}Helper");
-            object enumValue = (int) value;
+            var enumHelperType = thisAssembly.GetType($"{enumTypeName}Helper");
+            object enumValue = (int)value;
             if (enumHelperType != null)
             {
                 //this enum has an associated helper, use that to load the value
-                MethodInfo enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] { value.GetType() });
+                var enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] { value.GetType() });
                 if (enumHelperMethod != null)
-                    enumValue = enumHelperMethod.Invoke(null, new object[] {value});
+                    enumValue = enumHelperMethod.Invoke(null, new object[] { value });
             }
+
             keys.Add(new KeyValuePair<string, object>(name, enumValue));
         }
         else if (value is IDictionary)
         {
-            var obj = (IDictionary) value;
+            var obj = (IDictionary)value;
             foreach (var sName in obj.Keys)
             {
                 var subName = sName.ToString();
                 var subValue = obj[subName];
                 var fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
-                PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo,arrayDeserializationFormat);
+                PrepareFormFieldsFromObject(fullSubName, subValue, keys, propInfo, arrayDeserializationFormat);
             }
         }
-        else if (!(value.GetType().Namespace.StartsWith("System")))
+        else if (!value.GetType().Namespace.StartsWith("System"))
         {
             //Custom object Iterate through its properties
             var enumerator = value.GetType().GetRuntimeProperties().GetEnumerator();
@@ -319,21 +348,20 @@ public static class APIHelper
             while (enumerator.MoveNext())
             {
                 pInfo = enumerator.Current as PropertyInfo;
-                var jsonProperty = (JsonPropertyAttribute) pInfo.GetCustomAttributes(t, true).FirstOrDefault();
-                var subName = (jsonProperty != null) ? jsonProperty.PropertyName : pInfo.Name;
+                var jsonProperty = (JsonPropertyAttribute)pInfo.GetCustomAttributes(t, true).FirstOrDefault();
+                var subName = jsonProperty != null ? jsonProperty.PropertyName : pInfo.Name;
                 var fullSubName = string.IsNullOrWhiteSpace(name) ? subName : name + '[' + subName + ']';
                 var subValue = pInfo.GetValue(value, null);
-                PrepareFormFieldsFromObject(fullSubName, subValue, keys, pInfo,arrayDeserializationFormat);
+                PrepareFormFieldsFromObject(fullSubName, subValue, keys, pInfo, arrayDeserializationFormat);
             }
         }
         else if (value is DateTime)
         {
             string convertedValue = null;
             object[] pInfo = null;
-            if(propInfo!=null)
+            if (propInfo != null)
                 pInfo = propInfo.GetCustomAttributes(true);
             if (pInfo != null)
-            {
                 foreach (var attr in pInfo)
                 {
                     var converterAttr = attr as JsonConverterAttribute;
@@ -344,15 +372,18 @@ public static class APIHelper
                                 Activator.CreateInstance(converterAttr.ConverterType,
                                     converterAttr.ConverterParameters)).Replace("\"", "");
                 }
-            }
-            keys.Add(new KeyValuePair<string, object>(name, (convertedValue) ?? ((DateTime)value).ToString(DateTimeFormat))); 
+
+            keys.Add(new KeyValuePair<string, object>(name,
+                convertedValue ?? ((DateTime)value).ToString(DateTimeFormat)));
         }
         else
         {
-            keys.Add(new KeyValuePair<string, object>(name,value));
+            keys.Add(new KeyValuePair<string, object>(name, value));
         }
+
         return keys;
     }
+
     /// <summary>
     /// Add/update entries with the new dictionary.
     /// </summary>
@@ -360,46 +391,39 @@ public static class APIHelper
     /// <param name="dictionary2"></param>
     public static void Add(this Dictionary<string, object> dictionary, Dictionary<string, object> dictionary2)
     {
-        foreach (var kvp in dictionary2)
-        {
-            dictionary[kvp.Key] = kvp.Value;
-        }
+        foreach (var kvp in dictionary2) dictionary[kvp.Key] = kvp.Value;
     }
-    public static Dictionary<string, string> GetRequestHeaders(StarlingClient starlingClient, bool excludeAcceptHeader = false)
+
+    public static Dictionary<string, string> GetRequestHeaders(StarlingClient starlingClient,
+        bool excludeAcceptHeader = false)
     {
         Dictionary<string, string> headers;
         if (excludeAcceptHeader)
-        {
             headers = new Dictionary<string, string>();
-        }
         else
-        {
             headers = new Dictionary<string, string>
             {
-                {"accept", "application/json"}
+                { "accept", "application/json" }
             };
-        }
         headers.Add("Authorization", $"Bearer {starlingClient.OAuthAccessToken}");
         return headers;
     }
-    public static Dictionary<string, string> GetContentRequestHeaders(StarlingClient starlingClient, bool includeAcceptType = false)
+
+    public static Dictionary<string, string> GetContentRequestHeaders(StarlingClient starlingClient,
+        bool includeAcceptType = false)
     {
         Dictionary<string, string> headers;
         if (includeAcceptType)
-        {
             headers = new Dictionary<string, string>
             {
                 { "accept", "application/json" },
                 { "content-type", "application/json; charset=utf-8" }
             };
-        }
         else
-        {
             headers = new Dictionary<string, string>
             {
                 { "content-type", "application/json; charset=utf-8" }
             };
-        }
         headers.Add("Authorization", $"Bearer {starlingClient.OAuthAccessToken}");
         return headers;
     }

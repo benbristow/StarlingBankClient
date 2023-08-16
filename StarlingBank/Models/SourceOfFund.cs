@@ -104,7 +104,10 @@ public static class SourceOfFundHelper
     /// </summary>
     /// <param name="enumValues">The list of SourceOfFund values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<SourceOfFund> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<SourceOfFund> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into SourceOfFund value

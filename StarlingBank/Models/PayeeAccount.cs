@@ -54,9 +54,6 @@ public class PayeeAccount
     [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public BankIdentifierType? BankIdentifierType { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("lastReferences")]
-    public List<string> LastReferences { get; set; }
+
+    [JsonProperty("lastReferences")] public List<string> LastReferences { get; set; }
 }

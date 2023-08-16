@@ -132,7 +132,10 @@ public static class DescriptionHelper
     /// </summary>
     /// <param name="enumValues">The list of Description values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Description> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Description> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Description value

@@ -36,7 +36,8 @@ public static class OnboardingStageHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"ONBOARDING_REQUEST_SUBMITTED", "ONBOARDING_COMPLETE", "ONBOARDING_REJECTED"};
+    private static readonly List<string> StringValues = new()
+        { "ONBOARDING_REQUEST_SUBMITTED", "ONBOARDING_COMPLETE", "ONBOARDING_REJECTED" };
 
     /// <summary>
     /// Converts a OnboardingStage value to a corresponding string value
@@ -64,7 +65,10 @@ public static class OnboardingStageHelper
     /// </summary>
     /// <param name="enumValues">The list of OnboardingStage values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<OnboardingStage> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<OnboardingStage> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into OnboardingStage value

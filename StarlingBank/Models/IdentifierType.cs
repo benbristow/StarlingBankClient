@@ -36,7 +36,7 @@ public static class IdentifierTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"SORT_CODE", "IBAN_BIC", "ABA_ACH"};
+    private static readonly List<string> StringValues = new() { "SORT_CODE", "IBAN_BIC", "ABA_ACH" };
 
     /// <summary>
     /// Converts a IdentifierType value to a corresponding string value
@@ -64,7 +64,10 @@ public static class IdentifierTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of IdentifierType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<IdentifierType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<IdentifierType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into IdentifierType value

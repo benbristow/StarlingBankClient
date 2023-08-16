@@ -10,11 +10,8 @@ public class SettleUpProfile
     [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
     public Status Status { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("starlingPayLink")]
-    public string StarlingPayLink { get; set; }
+
+    [JsonProperty("starlingPayLink")] public string StarlingPayLink { get; set; }
 
     /// <summary>
     /// Settle Up link

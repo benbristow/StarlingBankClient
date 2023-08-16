@@ -36,7 +36,7 @@ public static class PaymentTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"DIRECT_DEBIT", "STANDING_ORDER", "INTERNAL_TRANSFER"};
+    private static readonly List<string> StringValues = new() { "DIRECT_DEBIT", "STANDING_ORDER", "INTERNAL_TRANSFER" };
 
     /// <summary>
     /// Converts a PaymentType value to a corresponding string value
@@ -64,7 +64,10 @@ public static class PaymentTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of PaymentType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<PaymentType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<PaymentType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into PaymentType value

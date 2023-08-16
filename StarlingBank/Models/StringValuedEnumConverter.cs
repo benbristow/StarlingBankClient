@@ -25,7 +25,7 @@ public class StringValuedEnumConverter : JsonConverter
         if (value is IDictionary)
         {
             writer.WriteStartObject();
-            foreach (object keyValuePair in value as IDictionary)
+            foreach (var keyValuePair in value as IDictionary)
             {
                 var entry = (DictionaryEntry)keyValuePair;
                 writer.WritePropertyName(entry.Key.ToString());
@@ -38,12 +38,14 @@ public class StringValuedEnumConverter : JsonConverter
         else if (value is IEnumerable)
         {
             writer.WriteStartArray();
-            foreach (object item in value as IEnumerable) WriteStringValue(writer, item);
+            foreach (var item in value as IEnumerable) WriteStringValue(writer, item);
             writer.WriteEndArray();
         }
         //handle string valued enums
         else
+        {
             WriteStringValue(writer, value);
+        }
     }
 
     /// <summary>
@@ -52,9 +54,9 @@ public class StringValuedEnumConverter : JsonConverter
     /// <param name="value">The string valued enum element value</param>
     private static void WriteStringValue(JsonWriter writer, object value)
     {
-        System.Type enumHelperType = loadHelperType(value.GetType());
-        MethodInfo enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] {value.GetType()});
-        object stringValue = enumHelperMethod.Invoke(null, new object[] {value});
+        var enumHelperType = loadHelperType(value.GetType());
+        var enumHelperMethod = enumHelperType.GetRuntimeMethod("ToValue", new[] { value.GetType() });
+        var stringValue = enumHelperMethod.Invoke(null, new object[] { value });
         if (stringValue != null)
             writer.WriteValue(stringValue);
         else
@@ -68,10 +70,14 @@ public class StringValuedEnumConverter : JsonConverter
     /// <returns>System.Type of the helper class for the given enum type</returns>
     private static System.Type loadHelperType(System.Type enumType)
     {
-        var isNullableGeneric = enumType.GetTypeInfo().IsGenericType && enumType.GetGenericTypeDefinition() == typeof(Nullable<>);
-        Assembly assembly = isNullableGeneric ? Nullable.GetUnderlyingType(enumType).GetTypeInfo().Assembly : enumType.GetTypeInfo().Assembly;
-        var enumHelperClassName = $"{(isNullableGeneric ? Nullable.GetUnderlyingType(enumType).FullName : enumType.FullName)}Helper";
-        System.Type enumHelperType = assembly.GetType(enumHelperClassName);
+        var isNullableGeneric = enumType.GetTypeInfo().IsGenericType &&
+                                enumType.GetGenericTypeDefinition() == typeof(Nullable<>);
+        var assembly = isNullableGeneric
+            ? Nullable.GetUnderlyingType(enumType).GetTypeInfo().Assembly
+            : enumType.GetTypeInfo().Assembly;
+        var enumHelperClassName =
+            $"{(isNullableGeneric ? Nullable.GetUnderlyingType(enumType).FullName : enumType.FullName)}Helper";
+        var enumHelperType = assembly.GetType(enumHelperClassName);
         if (enumHelperType == null)
             throw new InvalidCastException("Unable to load enum helper for casting value");
         return enumHelperType;
@@ -85,7 +91,8 @@ public class StringValuedEnumConverter : JsonConverter
     /// <param name="existingValue">The existing value of object being read</param>
     /// <param name="serializer">The calling serializer</param>
     /// <returns>The object value as enum element</returns>
-    public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.Null)
             return null;
@@ -94,9 +101,9 @@ public class StringValuedEnumConverter : JsonConverter
             if (reader.TokenType == JsonToken.String)
             {
                 var enumStringValue = reader.Value.ToString();
-                System.Type enumHelperType = loadHelperType(objectType);
-                MethodInfo enumHelperMethod = enumHelperType.GetRuntimeMethod("ParseString", new[] {typeof(string)});
-                object parsed = enumHelperMethod.Invoke(null, new object[] {enumStringValue});
+                var enumHelperType = loadHelperType(objectType);
+                var enumHelperMethod = enumHelperType.GetRuntimeMethod("ParseString", new[] { typeof(string) });
+                var parsed = enumHelperMethod.Invoke(null, new object[] { enumStringValue });
                 return parsed;
             }
         }
@@ -117,20 +124,20 @@ public class StringValuedEnumConverter : JsonConverter
     /// </returns>
     public override bool CanConvert(System.Type objectType)
     {
-        System.Type toCheck = objectType;
-        System.Type[] genericArgs = objectType.GenericTypeArguments;
+        var toCheck = objectType;
+        var genericArgs = objectType.GenericTypeArguments;
         if (genericArgs != null && genericArgs.Length > 0)
             toCheck = genericArgs[genericArgs.Length - 1];
-        object[] attributes = toCheck.GetTypeInfo().GetCustomAttributes(typeof(JsonConverterAttribute), false);
+        var attributes = toCheck.GetTypeInfo().GetCustomAttributes(typeof(JsonConverterAttribute), false);
         if (attributes == null)
             return false;
-        foreach (object converterAttrib in attributes)
+        foreach (var converterAttrib in attributes)
         {
             if (attributes == null)
                 continue;
-            foreach (object attribute in attributes)
+            foreach (var attribute in attributes)
             {
-                System.Type converterrType = (attribute as JsonConverterAttribute).ConverterType;
+                var converterrType = (attribute as JsonConverterAttribute).ConverterType;
                 if (converterrType.FullName.Equals(GetType().FullName))
                     return true;
             }

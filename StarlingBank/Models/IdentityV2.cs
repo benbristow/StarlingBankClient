@@ -7,24 +7,15 @@ namespace StarlingBank.Models;
 
 public class IdentityV2
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("accountHolderUid")]
-    public Guid? AccountHolderUid { get; set; }
+    [JsonProperty("accountHolderUid")] public Guid? AccountHolderUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonConverter(typeof(IsoDateTimeConverter))]
     [JsonProperty("expiresAt")]
     public DateTime? ExpiresAt { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("expiresInSeconds")]
-    public long? ExpiresInSeconds { get; set; }
+
+    [JsonProperty("expiresInSeconds")] public long? ExpiresInSeconds { get; set; }
 
     /// <summary>
     /// The scopes which this token has permission to use e.g. balance:read
@@ -32,17 +23,11 @@ public class IdentityV2
     [JsonProperty("scopes")]
     public List<string> Scopes { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("authenticated")]
-    public bool? Authenticated { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("applicationUserUid")]
-    public Guid? ApplicationUserUid { get; set; }
+    [JsonProperty("authenticated")] public bool? Authenticated { get; set; }
+
+
+    [JsonProperty("applicationUserUid")] public Guid? ApplicationUserUid { get; set; }
 
     /// <summary>
     /// Deprecated, use accountHolderUid instead

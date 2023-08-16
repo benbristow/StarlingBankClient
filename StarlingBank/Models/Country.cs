@@ -857,7 +857,10 @@ public static class CountryHelper
     /// </summary>
     /// <param name="enumValues">The list of Country values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Country> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Country> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Country value

@@ -29,7 +29,8 @@ public interface ISavingsGoalsServices
     /// <param name="savingsGoalUid">Required parameter: Savings goal uid</param>
     /// <returns>Task&lt;Models.ScheduledSavingsPaymentV2&gt;.</returns>
     /// <return>Returns the Models.ScheduledSavingsPaymentV2 response from the API call</return>
-    Task<Models.ScheduledSavingsPaymentV2> GetRecurringTransferAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid);
+    Task<Models.ScheduledSavingsPaymentV2> GetRecurringTransferAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid savingsGoalUid);
 
     /// <summary>
     /// Create a recurring transfer into a savings goal
@@ -40,7 +41,8 @@ public interface ISavingsGoalsServices
     /// <param name="scheduledSavingsPaymentRequest">Required parameter: Recurring transfer request</param>
     /// <returns>Task&lt;Models.SavingsGoalTransferResponseV2&gt;.</returns>
     /// <return>Returns the Models.SavingsGoalTransferResponseV2 response from the API call</return>
-    Task<Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransferAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid,
+    Task<Models.SavingsGoalTransferResponseV2> CreateOrUpdateRecurringTransferAsync(StarlingClient starlingClient,
+        Guid accountUid, Guid savingsGoalUid,
         Models.ScheduledSavingsPaymentRequestV2 scheduledSavingsPaymentRequest);
 
     /// <summary>
@@ -70,7 +72,8 @@ public interface ISavingsGoalsServices
     /// <param name="savingsGoalRequest">Required parameter: Savings goal request</param>
     /// <returns>Task&lt;Models.CreateOrUpdateSavingsGoalResponseV2&gt;.</returns>
     /// <return>Returns the Models.CreateOrUpdateSavingsGoalResponseV2 response from the API call</return>
-    Task<Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid,
+    Task<Models.CreateOrUpdateSavingsGoalResponseV2> CreateSavingsGoalAsync(StarlingClient starlingClient,
+        Guid accountUid,
         Models.SavingsGoalRequestV2 savingsGoalRequest);
 
     /// <summary>
@@ -92,7 +95,8 @@ public interface ISavingsGoalsServices
     /// <param name="savingsGoalRequest">Required parameter: Savings goal request</param>
     /// <returns>Task&lt;Models.CreateOrUpdateSavingsGoalResponseV2&gt;.</returns>
     /// <return>Returns the Models.CreateOrUpdateSavingsGoalResponseV2 response from the API call</return>
-    Task<Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoalAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid,
+    Task<Models.CreateOrUpdateSavingsGoalResponseV2> UpdateSavingsGoalAsync(StarlingClient starlingClient,
+        Guid accountUid, Guid savingsGoalUid,
         Models.SavingsGoalRequestV2 savingsGoalRequest);
 
     /// <summary>
@@ -113,7 +117,8 @@ public interface ISavingsGoalsServices
     /// <param name="savingsGoalUid">Required parameter: Savings goal uid</param>
     /// <returns>Task&lt;Models.SavingsGoalPhotoV2&gt;.</returns>
     /// <return>Returns the Models.SavingsGoalPhotoV2 response from the API call</return>
-    Task<Models.SavingsGoalPhotoV2> GetSavingsGoalPhotoAsync(StarlingClient starlingClient, Guid accountUid, Guid savingsGoalUid);
+    Task<Models.SavingsGoalPhotoV2> GetSavingsGoalPhotoAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid savingsGoalUid);
 
     /// <summary>
     /// Withdraw money from a savings goal

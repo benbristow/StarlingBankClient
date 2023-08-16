@@ -17,9 +17,6 @@ public class PayeeCreationResponse
     [JsonProperty("success")]
     public bool? Success { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("errors")]
-    public List<ErrorDetail> Errors { get; set; }
+
+    [JsonProperty("errors")] public List<ErrorDetail> Errors { get; set; }
 }

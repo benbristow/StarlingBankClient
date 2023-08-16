@@ -36,7 +36,7 @@ public static class PayeeChannelTypeHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"BANK_ACCOUNT", "SETTLE_UP", "NEARBY"};
+    private static readonly List<string> StringValues = new() { "BANK_ACCOUNT", "SETTLE_UP", "NEARBY" };
 
     /// <summary>
     /// Converts a PayeeChannelType value to a corresponding string value
@@ -64,7 +64,10 @@ public static class PayeeChannelTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of PayeeChannelType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<PayeeChannelType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<PayeeChannelType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into PayeeChannelType value

@@ -18,11 +18,8 @@ public class SavingsGoalTransferResponseV2
     [JsonProperty("success")]
     public bool? Success { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("error")]
-    public List<ErrorDetail> Error { get; set; }
+
+    [JsonProperty("error")] public List<ErrorDetail> Error { get; set; }
 
     /// <summary>
     /// List of errors if the method request failed

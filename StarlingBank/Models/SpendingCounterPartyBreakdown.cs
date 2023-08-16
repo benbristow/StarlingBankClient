@@ -5,23 +5,14 @@ namespace StarlingBank.Models;
 
 public class SpendingCounterPartyBreakdown
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("counterPartyUid")]
-    public Guid? CounterPartyUid { get; set; }
+    [JsonProperty("counterPartyUid")] public Guid? CounterPartyUid { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("counterPartyType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public CounterPartyType? CounterPartyType { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("counterPartyName")]
-    public string CounterPartyName { get; set; }
+
+    [JsonProperty("counterPartyName")] public string CounterPartyName { get; set; }
 
     /// <summary>
     /// Amount spent at/sent to this counter party
@@ -35,11 +26,8 @@ public class SpendingCounterPartyBreakdown
     [JsonProperty("totalReceived")]
     public double? TotalReceived { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("netSpend")]
-    public double? NetSpend { get; set; }
+
+    [JsonProperty("netSpend")] public double? NetSpend { get; set; }
 
     /// <summary>
     /// IN if totalReceived > totalSpent else OUT
@@ -47,9 +35,7 @@ public class SpendingCounterPartyBreakdown
     [JsonProperty("netDirection", ItemConverterType = typeof(StringValuedEnumConverter))]
     public NetDirection? NetDirection { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
     public Currency? Currency { get; set; }
 
@@ -59,9 +45,6 @@ public class SpendingCounterPartyBreakdown
     [JsonProperty("percentage")]
     public double? Percentage { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("transactionCount")]
-    public long? TransactionCount { get; set; }
+
+    [JsonProperty("transactionCount")] public long? TransactionCount { get; set; }
 }

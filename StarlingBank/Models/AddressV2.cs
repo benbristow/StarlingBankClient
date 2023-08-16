@@ -7,37 +7,26 @@ namespace StarlingBank.Models;
 /// </summary>
 public class AddressV2
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
     /// <value>The line1.</value>
     [JsonProperty("line1")]
     public string Line1 { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     /// <value>The line2.</value>
     [JsonProperty("line2")]
     public string Line2 { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     /// <value>The line3.</value>
     [JsonProperty("line3")]
     public string Line3 { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     /// <value>The post town.</value>
     [JsonProperty("postTown")]
     public string PostTown { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     /// <value>The post code.</value>
     [JsonProperty("postCode")]
     public string PostCode { get; set; }

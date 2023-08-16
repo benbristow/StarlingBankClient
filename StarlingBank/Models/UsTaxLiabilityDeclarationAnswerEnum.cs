@@ -31,7 +31,7 @@ public static class UsTaxLiabilityDeclarationAnswerHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"YES", "NO"};
+    private static readonly List<string> StringValues = new() { "YES", "NO" };
 
     /// <summary>
     /// Converts a UsTaxLiabilityDeclarationAnswer value to a corresponding string value
@@ -58,7 +58,10 @@ public static class UsTaxLiabilityDeclarationAnswerHelper
     /// </summary>
     /// <param name="enumValues">The list of UsTaxLiabilityDeclarationAnswer values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<UsTaxLiabilityDeclarationAnswer> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<UsTaxLiabilityDeclarationAnswer> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into UsTaxLiabilityDeclarationAnswer value

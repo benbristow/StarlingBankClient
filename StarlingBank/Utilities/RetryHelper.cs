@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+
 namespace StarlingBank.Utilities;
 
 public static class RetryHelper
@@ -9,6 +10,7 @@ public static class RetryHelper
     {
         await RetryOnExceptionAsync<Exception>(times, delay, operation).ConfigureAwait(false);
     }
+
     public static async Task RetryOnExceptionAsync<TException>(
         int times, TimeSpan delay, Func<Task> operation) where TException : Exception
     {

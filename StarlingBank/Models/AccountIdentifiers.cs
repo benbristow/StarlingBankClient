@@ -36,9 +36,7 @@ public class AccountIdentifiers
     [JsonProperty("bic")]
     public string Bic { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     /// <value>The account identifiers value.</value>
     [JsonProperty("accountIdentifiers")]
     public List<AccountIdentifier> AccountIdentifiersValue { get; set; }

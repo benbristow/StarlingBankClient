@@ -83,7 +83,10 @@ public static class AccountHolderTypeHelper
     /// </summary>
     /// <param name="enumValues">The list of AccountHolderType values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<AccountHolderType> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<AccountHolderType> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into AccountHolderType value

@@ -14,7 +14,6 @@ namespace StarlingBank.Services;
 /// <seealso cref="StarlingBank.Services.IBaseServices" />
 public class BaseServices : IBaseServices
 {
-
     /// <summary>
     /// Validates the response against HTTP errors defined at the API level
     /// </summary>
@@ -28,18 +27,21 @@ public class BaseServices : IBaseServices
         var responseCode = (int)response.StatusCode;
         if (responseCode >= 300 && responseCode < 400)
         {
-            errorHeader = "HTTP Redirection Error " + responseCode + ": " + GetHttpStatusDescription(response.StatusCode) + ". " +
+            errorHeader = "HTTP Redirection Error " + responseCode + ": " +
+                          GetHttpStatusDescription(response.StatusCode) + ". " +
                           await ParseBody(response);
             throw new APIException(errorHeader, request, response);
         }
         else if (responseCode >= 400 && responseCode < 500)
         {
-            errorHeader = "HTTP Client Error " + responseCode + ": " + GetHttpStatusDescription(response.StatusCode) + ". " + await ParseBody(response);
+            errorHeader = "HTTP Client Error " + responseCode + ": " + GetHttpStatusDescription(response.StatusCode) +
+                          ". " + await ParseBody(response);
             throw new APIException(errorHeader, request, response);
         }
         else if (responseCode >= 500)
         {
-            errorHeader = "HTTP Server Error " + responseCode + ": " + GetHttpStatusDescription(response.StatusCode) + ". " + await ParseBody(response);
+            errorHeader = "HTTP Server Error " + responseCode + ": " + GetHttpStatusDescription(response.StatusCode) +
+                          ". " + await ParseBody(response);
             throw new APIException(errorHeader, request, response);
         }
     }
@@ -52,7 +54,7 @@ public class BaseServices : IBaseServices
     public async Task<string> ParseBody(HttpResponseMessage response)
     {
         var errorMessage = "";
-        Stream receiveStream = await response.Content.ReadAsStreamAsync();
+        var receiveStream = await response.Content.ReadAsStreamAsync();
         var encode = System.Text.Encoding.GetEncoding("utf-8");
         // Pipes the stream to a higher level stream reader with the required encoding format.
         using var sr = new StreamReader(receiveStream, encode);
@@ -60,15 +62,19 @@ public class BaseServices : IBaseServices
         while ((s = await sr.ReadLineAsync()) != null)
             if (s.StartsWith("{\"error\":"))
             {
-                Error? error = JsonConvert.DeserializeObject<Error>(s);
+                var error = JsonConvert.DeserializeObject<Error>(s);
                 if (error == null)
                     continue;
                 if (error.error != null && error.error.Length > 1)
                     errorMessage = " - " + char.ToUpper(error.error[0]) + error.error.Substring(1).Replace("_", " ");
                 if (error.error_description != null)
-                    errorMessage = errorMessage + " : " + char.ToUpper(error.error_description[0]) + error.error_description.Substring(1);
+                    errorMessage = errorMessage + " : " + char.ToUpper(error.error_description[0]) +
+                                   error.error_description.Substring(1);
             }
-            else if (s.StartsWith("[\"INVALID_END_DATE\"]")) errorMessage = " - Invalid End Date";
+            else if (s.StartsWith("[\"INVALID_END_DATE\"]"))
+            {
+                errorMessage = " - Invalid End Date";
+            }
 
         return errorMessage;
         //{ "error":"signature_check_failed","error_description":"missing date header"}

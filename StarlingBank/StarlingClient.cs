@@ -38,15 +38,12 @@ public class StarlingClient
         private StarlingClient ValidStarlingClient()
         {
             var validator = new StarlingClientValidator();
-            if (_environment == ServerEnvironment.NOT_SET)
-            {
-                _environment = ServerEnvironment.SANDBOX;
-            }
+            if (_environment == ServerEnvironment.NOT_SET) _environment = ServerEnvironment.SANDBOX;
 
             var starlingClient = new StarlingClient
             {
                 Environment = _environment,
-                OAuthAccessToken = _oAuthAccessToken,
+                OAuthAccessToken = _oAuthAccessToken
             };
             validator.ValidateAndThrow(starlingClient);
             return starlingClient;

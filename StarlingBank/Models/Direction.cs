@@ -31,7 +31,7 @@ public static class DirectionHelper
     /// <summary>
     /// The string values
     /// </summary>
-    private static readonly List<string> StringValues = new() {"IN", "OUT"};
+    private static readonly List<string> StringValues = new() { "IN", "OUT" };
 
     /// <summary>
     /// Converts a Direction value to a corresponding string value
@@ -58,7 +58,10 @@ public static class DirectionHelper
     /// </summary>
     /// <param name="enumValues">The list of Direction values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Direction> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Direction> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Direction value

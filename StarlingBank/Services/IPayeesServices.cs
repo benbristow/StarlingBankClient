@@ -20,7 +20,8 @@ public interface IPayeesServices
     /// <param name="payeeCreationRequest">Required parameter: Payee creation object</param>
     /// <returns>Task&lt;Models.PayeeCreationResponse&gt;.</returns>
     /// <return>Returns the Models.PayeeCreationResponse response from the API call</return>
-    Task<Models.PayeeCreationResponse> CreatePayeeAsync(StarlingClient starlingClient, Models.PayeeCreationRequest payeeCreationRequest);
+    Task<Models.PayeeCreationResponse> CreatePayeeAsync(StarlingClient starlingClient,
+        Models.PayeeCreationRequest payeeCreationRequest);
 
     /// <summary>
     /// Create a payee account
@@ -60,7 +61,8 @@ public interface IPayeesServices
     /// <param name="accountUid">Required parameter: Unique identifier of the payee account</param>
     /// <returns>Task&lt;Models.ScheduledPayments&gt;.</returns>
     /// <return>Returns the Models.ScheduledPayments response from the API call</return>
-    Task<Models.ScheduledPayments> ListPaymentOrdersForAccountAsync(StarlingClient starlingClient, Guid payeeUid, Guid accountUid);
+    Task<Models.ScheduledPayments> ListPaymentOrdersForAccountAsync(StarlingClient starlingClient, Guid payeeUid,
+        Guid accountUid);
 
     /// <summary>
     /// View a history of payments to your payee
@@ -71,7 +73,8 @@ public interface IPayeesServices
     /// <param name="since">Required parameter: Start date for a transaction history</param>
     /// <returns>Task&lt;Models.Payments&gt;.</returns>
     /// <return>Returns the Models.Payments response from the API call</return>
-    Task<Models.Payments> ListPaymentsForPayeeAccountAsync(StarlingClient starlingClient, Guid payeeUid, Guid accountUid, DateTime since);
+    Task<Models.Payments> ListPaymentsForPayeeAccountAsync(StarlingClient starlingClient, Guid payeeUid,
+        Guid accountUid, DateTime since);
 
     /// <summary>
     /// Serves the image for the payee

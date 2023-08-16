@@ -33,7 +33,8 @@ public interface ITransactionFeedServices
     /// <param name="feedItemUid">Required parameter: Feed item uid</param>
     /// <returns>Task&lt;Models.Receipt&gt;.</returns>
     /// <return>Returns the Models.Receipt response from the API call</return>
-    Task<Models.Receipt> GetReceiptAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid feedItemUid);
+    Task<Models.Receipt> GetReceiptAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+        Guid feedItemUid);
 
     /// <summary>
     /// Submit a receipt for a feed item
@@ -78,7 +79,8 @@ public interface ITransactionFeedServices
     /// <param name="feedItemUid">Required parameter: Feed item uid</param>
     /// <returns>Task&lt;Models.FeedItem&gt;.</returns>
     /// <return>Returns the Models.FeedItem response from the API call</return>
-    Task<Models.FeedItem> GetFeedItemAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid feedItemUid);
+    Task<Models.FeedItem> GetFeedItemAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+        Guid feedItemUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -90,7 +92,8 @@ public interface ITransactionFeedServices
     /// <param name="feedItemUid">Required parameter: Feed item uid</param>
     /// <returns>Task&lt;Models.FeedItemAttachments&gt;.</returns>
     /// <return>Returns the Models.FeedItemAttachments response from the API call</return>
-    Task<Models.FeedItemAttachments> GetFeedItemAttachmentsAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid feedItemUid);
+    Task<Models.FeedItemAttachments> GetFeedItemAttachmentsAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid categoryUid, Guid feedItemUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -102,7 +105,8 @@ public interface ITransactionFeedServices
     /// <param name="feedItemUid">Required parameter: Feed item uid</param>
     /// <returns>Task&lt;Models.MastercardFeedItem&gt;.</returns>
     /// <return>Returns the Models.MastercardFeedItem response from the API call</return>
-    Task<Models.MastercardFeedItem> GetMastercardFeedItemAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, Guid feedItemUid);
+    Task<Models.MastercardFeedItem> GetMastercardFeedItemAsync(StarlingClient starlingClient, Guid accountUid,
+        Guid categoryUid, Guid feedItemUid);
 
     /// <summary>
     /// Categories are subdivisions within an account.
@@ -114,7 +118,8 @@ public interface ITransactionFeedServices
     /// <param name="changesSince">Required parameter: Items which have changed since</param>
     /// <returns>Task&lt;Models.FeedItems&gt;.</returns>
     /// <return>Returns the Models.FeedItems response from the API call</return>
-    Task<Models.FeedItems> QueryFeedItemsAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid, DateTime changesSince);
+    Task<Models.FeedItems> QueryFeedItemsAsync(StarlingClient starlingClient, Guid accountUid, Guid categoryUid,
+        DateTime changesSince);
 
     /// <summary>
     /// Categories are subdivisions within an account.

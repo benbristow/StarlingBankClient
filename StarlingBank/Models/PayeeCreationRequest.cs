@@ -19,9 +19,7 @@ public class PayeeCreationRequest
     [JsonProperty("phoneNumber")]
     public string PhoneNumber { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("payeeType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public PayeeType PayeeType { get; set; }
 

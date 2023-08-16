@@ -132,7 +132,10 @@ public static class FrequencyHelper
     /// </summary>
     /// <param name="enumValues">The list of Frequency values to convert</param>
     /// <returns>The list of representative string values</returns>
-    public static List<string> ToValue(List<Frequency> enumValues) => enumValues?.Select(ToValue).ToList();
+    public static List<string> ToValue(List<Frequency> enumValues)
+    {
+        return enumValues?.Select(ToValue).ToList();
+    }
 
     /// <summary>
     /// Converts a string value into Frequency value

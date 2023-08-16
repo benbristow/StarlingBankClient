@@ -5,11 +5,7 @@ namespace StarlingBank.Models;
 
 public class SpendingCategorySummary
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("period")]
-    public string Period { get; set; }
+    [JsonProperty("period")] public string Period { get; set; }
 
     /// <summary>
     /// Amount spent from the account in the month
@@ -41,9 +37,7 @@ public class SpendingCategorySummary
     [JsonProperty("totalReceivedNetIn")]
     public double? TotalReceivedNetIn { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
     public Currency? Currency { get; set; }
 
@@ -53,9 +47,6 @@ public class SpendingCategorySummary
     [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
     public Direction? Direction { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("breakdown")]
-    public List<SpendingCategoryBreakdown> Breakdown { get; set; }
+
+    [JsonProperty("breakdown")] public List<SpendingCategoryBreakdown> Breakdown { get; set; }
 }

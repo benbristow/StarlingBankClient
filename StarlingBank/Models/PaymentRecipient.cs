@@ -4,15 +4,9 @@ namespace StarlingBank.Models;
 
 public class PaymentRecipient
 {
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("payeeName")]
-    public string PayeeName { get; set; }
+    [JsonProperty("payeeName")] public string PayeeName { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
     [JsonProperty("payeeType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public PayeeType PayeeType { get; set; }
 
@@ -22,21 +16,13 @@ public class PaymentRecipient
     [JsonProperty("countryCode")]
     public string CountryCode { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("accountIdentifier")]
-    public string AccountIdentifier { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
-    [JsonProperty("bankIdentifier")]
-    public string BankIdentifier { get; set; }
+    [JsonProperty("accountIdentifier")] public string AccountIdentifier { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
+
+    [JsonProperty("bankIdentifier")] public string BankIdentifier { get; set; }
+
+
     [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
     public BankIdentifierType BankIdentifierType { get; set; }
 }

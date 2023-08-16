@@ -15,9 +15,6 @@ public class AddressesV2
     [JsonProperty("current")]
     public AddressV2 Current { get; set; }
 
-    /// <summary>
-    /// TODO: Write general description for this method
-    /// </summary>
     /// <value>The previous.</value>
     [JsonProperty("previous")]
     public List<AddressV2> Previous { get; set; }
