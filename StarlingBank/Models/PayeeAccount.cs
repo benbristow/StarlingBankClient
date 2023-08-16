@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -15,7 +16,7 @@ public class PayeeAccount
     /// <summary>
     /// The channel through which the payee was added
     /// </summary>
-    [JsonProperty("payeeChannelType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("payeeChannelType", ItemConverterType = typeof(StringEnumConverter))]
     public PayeeChannelType? PayeeChannelType { get; set; }
 
     /// <summary>
@@ -33,7 +34,7 @@ public class PayeeAccount
     /// <summary>
     /// The country code for the account (ISO 3166-1 alpha-2)
     /// </summary>
-    [JsonProperty("countryCode", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("countryCode", ItemConverterType = typeof(StringEnumConverter))]
     public CountryCode? CountryCode { get; set; }
 
     /// <summary>
@@ -51,7 +52,7 @@ public class PayeeAccount
     /// <summary>
     /// The bank identifier type
     /// </summary>
-    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringEnumConverter))]
     public BankIdentifierType? BankIdentifierType { get; set; }
 
 

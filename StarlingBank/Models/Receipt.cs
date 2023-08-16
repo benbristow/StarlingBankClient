@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -12,7 +13,7 @@ public class Receipt
     [JsonProperty("feedItemUid")] public Guid? FeedItemUid { get; set; }
 
 
-    [JsonProperty("metadataSource", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("metadataSource", ItemConverterType = typeof(StringEnumConverter))]
     public MetadataSource MetadataSource { get; set; }
 
 
@@ -30,7 +31,7 @@ public class Receipt
     /// <summary>
     /// ISO-4217 3 character currency code
     /// </summary>
-    [JsonProperty("currencyCode", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currencyCode", ItemConverterType = typeof(StringEnumConverter))]
     public CurrencyCode? CurrencyCode { get; set; }
 
 

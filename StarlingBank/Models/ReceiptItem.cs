@@ -34,7 +34,7 @@ public class ReceiptItem
     /// <summary>
     /// Type of receipt item. It can be PURCHASE, SERVICE_FEE, GRATUITY or null
     /// </summary>
-    [JsonProperty("type", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("type", ItemConverterType = typeof(StringEnumConverter))]
     public Type? Type { get; set; }
 
 

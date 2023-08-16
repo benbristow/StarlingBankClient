@@ -1,14 +1,12 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace StarlingBank.Models;
 
 /// <summary>
 /// OnboardingStageEnum
 /// </summary>
-[JsonConverter(typeof(StringValuedEnumConverter))]
 public enum OnboardingStage
 {
     /// <summary>

@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -7,7 +8,7 @@ public class SpendingCountryBreakdown
     /// <summary>
     /// The country code for this spending insights entry (ISO 3166-1 alpha-2)
     /// </summary>
-    [JsonProperty("countryCode", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("countryCode", ItemConverterType = typeof(StringEnumConverter))]
     public CountryCode? CountryCode { get; set; }
 
     /// <summary>
@@ -28,11 +29,11 @@ public class SpendingCountryBreakdown
     /// <summary>
     /// IN if totalReceived > totalSpent else OUT
     /// </summary>
-    [JsonProperty("netDirection", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("netDirection", ItemConverterType = typeof(StringEnumConverter))]
     public NetDirection? NetDirection { get; set; }
 
 
-    [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currency", ItemConverterType = typeof(StringEnumConverter))]
     public Currency? Currency { get; set; }
 
     /// <summary>

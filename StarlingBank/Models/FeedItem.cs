@@ -33,7 +33,7 @@ public class FeedItem
     /// <summary>
     /// Was this an inbound or outbound transaction
     /// </summary>
-    [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("direction", ItemConverterType = typeof(StringEnumConverter))]
     public Direction? Direction { get; set; }
 
     /// <summary>
@@ -65,19 +65,19 @@ public class FeedItem
     /// <summary>
     /// The source of the transaction
     /// </summary>
-    [JsonProperty("source", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("source", ItemConverterType = typeof(StringEnumConverter))]
     public Source? Source { get; set; }
 
     /// <summary>
     /// The source subtype of the transaction
     /// </summary>
-    [JsonProperty("sourceSubType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("sourceSubType", ItemConverterType = typeof(StringEnumConverter))]
     public SourceSubType? SourceSubType { get; set; }
 
     /// <summary>
     /// The status of the transaction
     /// </summary>
-    [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("status", ItemConverterType = typeof(StringEnumConverter))]
     public Status? Status { get; set; }
 
     /// <summary>
@@ -89,7 +89,7 @@ public class FeedItem
     /// <summary>
     /// The type of counter party for this transaction
     /// </summary>
-    [JsonProperty("counterPartyType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("counterPartyType", ItemConverterType = typeof(StringEnumConverter))]
     public CounterPartyType? CounterPartyType { get; set; }
 
     /// <summary>
@@ -149,14 +149,14 @@ public class FeedItem
     /// <summary>
     /// The country in which the transaction took place. ISO 3166-1 alpha-2
     /// </summary>
-    [JsonProperty("country", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("country", ItemConverterType = typeof(StringEnumConverter))]
     public Country? Country { get; set; }
 
     /// <summary>
     /// The category of the transaction
     /// </summary>
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
-    public SpendingCategory? SpendingCategory { get; set; }
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
+    public SpendingCategory SpendingCategory { get; set; }
 
     /// <summary>
     /// The user-provided transaction note

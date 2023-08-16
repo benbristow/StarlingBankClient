@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -38,6 +39,6 @@ public class InstructLocalPaymentRequest
     /// <summary>
     /// Optional spending category to associate with this payment
     /// </summary>
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
     public SpendingCategory? SpendingCategory { get; set; }
 }

@@ -1,14 +1,12 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace StarlingBank.Models;
 
 /// <summary>
 /// MonthEnum
 /// </summary>
-[JsonConverter(typeof(StringValuedEnumConverter))]
 public enum Month
 {
     /// <summary>

@@ -15,7 +15,7 @@ public class AccountV2
 
 
     /// <value>The type of the account.</value>
-    [JsonProperty("accountType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("accountType", ItemConverterType = typeof(StringEnumConverter))]
     public AccountType? AccountType { get; set; }
 
 
@@ -25,7 +25,7 @@ public class AccountV2
 
 
     /// <value>The currency.</value>
-    [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currency", ItemConverterType = typeof(StringEnumConverter))]
     public Currency? Currency { get; set; }
 
 

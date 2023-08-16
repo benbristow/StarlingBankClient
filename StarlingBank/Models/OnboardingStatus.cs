@@ -9,7 +9,7 @@ public class OnboardingStatus
     /// <summary>
     /// The current stage of onboarding
     /// </summary>
-    [JsonProperty("onboardingStage", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("onboardingStage", ItemConverterType = typeof(StringEnumConverter))]
     public OnboardingStage? OnboardingStage { get; set; }
 
     /// <summary>

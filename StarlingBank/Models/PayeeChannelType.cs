@@ -2,13 +2,14 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
 /// <summary>
 /// PayeeChannelTypeEnum
 /// </summary>
-[JsonConverter(typeof(StringValuedEnumConverter))]
+[JsonConverter(typeof(StringEnumConverter))]
 public enum PayeeChannelType
 {
     /// <summary>

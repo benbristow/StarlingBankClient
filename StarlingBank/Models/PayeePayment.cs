@@ -34,8 +34,8 @@ public class PayeePayment
     /// <summary>
     /// Spending category
     /// </summary>
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
-    public SpendingCategory? SpendingCategory { get; set; }
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
+    public SpendingCategory SpendingCategory { get; set; }
 
     /// <summary>
     /// Representation of money

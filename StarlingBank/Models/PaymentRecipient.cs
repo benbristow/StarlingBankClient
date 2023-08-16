@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -7,7 +8,7 @@ public class PaymentRecipient
     [JsonProperty("payeeName")] public string PayeeName { get; set; }
 
 
-    [JsonProperty("payeeType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("payeeType", ItemConverterType = typeof(StringEnumConverter))]
     public PayeeType PayeeType { get; set; }
 
     /// <summary>
@@ -23,6 +24,6 @@ public class PaymentRecipient
     [JsonProperty("bankIdentifier")] public string BankIdentifier { get; set; }
 
 
-    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringEnumConverter))]
     public BankIdentifierType BankIdentifierType { get; set; }
 }

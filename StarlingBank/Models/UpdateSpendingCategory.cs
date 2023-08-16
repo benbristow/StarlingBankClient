@@ -1,10 +1,11 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
 public class UpdateSpendingCategory
 {
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
     public SpendingCategory SpendingCategory { get; set; }
 
 

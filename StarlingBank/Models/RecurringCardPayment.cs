@@ -33,7 +33,7 @@ public class RecurringCardPayment
     /// <summary>
     /// Recurring payment status
     /// </summary>
-    [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("status", ItemConverterType = typeof(StringEnumConverter))]
     public Status? Status { get; set; }
 
     /// <summary>

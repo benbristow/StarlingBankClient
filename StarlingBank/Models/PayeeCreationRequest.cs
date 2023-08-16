@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StarlingBank.Utilities;
 
 namespace StarlingBank.Models;
@@ -20,7 +21,7 @@ public class PayeeCreationRequest
     public string PhoneNumber { get; set; }
 
 
-    [JsonProperty("payeeType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("payeeType", ItemConverterType = typeof(StringEnumConverter))]
     public PayeeType PayeeType { get; set; }
 
     /// <summary>

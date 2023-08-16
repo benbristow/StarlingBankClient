@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StarlingBank.Utilities;
 
 namespace StarlingBank.Models;
@@ -12,7 +13,7 @@ public class RecurrenceRuleV2
     public DateTime StartDate { get; set; }
 
 
-    [JsonProperty("frequency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("frequency", ItemConverterType = typeof(StringEnumConverter))]
     public Frequency Frequency { get; set; }
 
 
@@ -27,6 +28,6 @@ public class RecurrenceRuleV2
     public DateTime? UntilDate { get; set; }
 
 
-    [JsonProperty("days", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("days", ItemConverterType = typeof(StringEnumConverter))]
     public List<Day> Days { get; set; }
 }

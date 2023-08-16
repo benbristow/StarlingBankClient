@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StarlingBank.Utilities;
 
 namespace StarlingBank.Models;
@@ -84,12 +85,12 @@ public class ScheduledPayment
     /// <summary>
     /// Payment type
     /// </summary>
-    [JsonProperty("paymentType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("paymentType", ItemConverterType = typeof(StringEnumConverter))]
     public PaymentType? PaymentType { get; set; }
 
     /// <summary>
     /// Spending category
     /// </summary>
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
-    public SpendingCategory? SpendingCategory { get; set; }
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
+    public SpendingCategory SpendingCategory { get; set; }
 }

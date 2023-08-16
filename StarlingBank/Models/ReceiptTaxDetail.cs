@@ -15,7 +15,7 @@ public class ReceiptTaxDetail
     [JsonProperty("taxValue")] public double TaxValue { get; set; }
 
 
-    [JsonProperty("taxCurrencyCode", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("taxCurrencyCode", ItemConverterType = typeof(StringEnumConverter))]
     public TaxCurrencyCode TaxCurrencyCode { get; set; }
 
     /// <summary>

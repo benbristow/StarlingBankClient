@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -7,7 +8,7 @@ public class SettleUpProfile
     /// <summary>
     /// Status
     /// </summary>
-    [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("status", ItemConverterType = typeof(StringEnumConverter))]
     public Status Status { get; set; }
 
 

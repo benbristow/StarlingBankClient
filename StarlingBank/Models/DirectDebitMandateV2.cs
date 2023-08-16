@@ -13,11 +13,11 @@ public class DirectDebitMandateV2
     [JsonProperty("reference")] public string Reference { get; set; }
 
 
-    [JsonProperty("status", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("status", ItemConverterType = typeof(StringEnumConverter))]
     public Status? Status { get; set; }
 
 
-    [JsonProperty("source", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("source", ItemConverterType = typeof(StringEnumConverter))]
     public Source? Source { get; set; }
 
 

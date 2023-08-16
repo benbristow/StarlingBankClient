@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StarlingBank.Utilities;
 
 namespace StarlingBank.Models;
@@ -16,7 +17,7 @@ public class StandingOrderRecurrence
     /// <summary>
     /// Frequency of which payments should be made
     /// </summary>
-    [JsonProperty("frequency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("frequency", ItemConverterType = typeof(StringEnumConverter))]
     public Frequency Frequency { get; set; }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -12,7 +13,7 @@ public class ContentModel
     /// The webhook type
     /// </summary>
     /// <value>The type.</value>
-    [JsonProperty("type", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("type", ItemConverterType = typeof(StringEnumConverter))]
     public Type? Type { get; set; }
 
     /// <summary>

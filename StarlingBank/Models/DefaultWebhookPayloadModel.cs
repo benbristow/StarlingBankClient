@@ -34,6 +34,6 @@ public class DefaultWebhookPayloadModel
     /// <summary>
     /// The type of the event
     /// </summary>
-    [JsonProperty("webhookType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("webhookType", ItemConverterType = typeof(StringEnumConverter))]
     public WebhookType? WebhookType { get; set; }
 }

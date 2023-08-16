@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -8,7 +9,7 @@ public class SpendingCounterPartyBreakdown
     [JsonProperty("counterPartyUid")] public Guid? CounterPartyUid { get; set; }
 
 
-    [JsonProperty("counterPartyType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("counterPartyType", ItemConverterType = typeof(StringEnumConverter))]
     public CounterPartyType? CounterPartyType { get; set; }
 
 
@@ -32,11 +33,11 @@ public class SpendingCounterPartyBreakdown
     /// <summary>
     /// IN if totalReceived > totalSpent else OUT
     /// </summary>
-    [JsonProperty("netDirection", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("netDirection", ItemConverterType = typeof(StringEnumConverter))]
     public NetDirection? NetDirection { get; set; }
 
 
-    [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currency", ItemConverterType = typeof(StringEnumConverter))]
     public Currency? Currency { get; set; }
 
     /// <summary>

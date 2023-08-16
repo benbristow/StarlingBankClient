@@ -67,6 +67,6 @@ public class StandingOrder
     /// <summary>
     /// Optional spending category for the standing order
     /// </summary>
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
     public SpendingCategory? SpendingCategory { get; set; }
 }

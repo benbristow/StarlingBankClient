@@ -1,11 +1,12 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
 public class SpendingCategoryBreakdown
 {
-    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringValuedEnumConverter))]
-    public SpendingCategory? SpendingCategory { get; set; }
+    [JsonProperty("spendingCategory", ItemConverterType = typeof(StringEnumConverter))]
+    public SpendingCategory SpendingCategory { get; set; }
 
     /// <summary>
     /// Amount spent under this spending category
@@ -25,11 +26,11 @@ public class SpendingCategoryBreakdown
     /// <summary>
     /// IN if totalReceived > totalSpent else OUT
     /// </summary>
-    [JsonProperty("netDirection", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("netDirection", ItemConverterType = typeof(StringEnumConverter))]
     public NetDirection? NetDirection { get; set; }
 
 
-    [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currency", ItemConverterType = typeof(StringEnumConverter))]
     public Currency? Currency { get; set; }
 
     /// <summary>

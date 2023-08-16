@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -38,13 +39,13 @@ public class SpendingCounterPartySummary
     public double? TotalReceivedNetIn { get; set; }
 
 
-    [JsonProperty("currency", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("currency", ItemConverterType = typeof(StringEnumConverter))]
     public Currency? Currency { get; set; }
 
     /// <summary>
     /// IN if totalReceived > totalSpent else OUT
     /// </summary>
-    [JsonProperty("direction", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("direction", ItemConverterType = typeof(StringEnumConverter))]
     public Direction? Direction { get; set; }
 
 

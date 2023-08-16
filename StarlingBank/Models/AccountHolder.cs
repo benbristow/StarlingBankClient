@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -14,6 +15,6 @@ public class AccountHolder
 
 
     /// <value>The type of the account holder.</value>
-    [JsonProperty("accountHolderType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("accountHolderType", ItemConverterType = typeof(StringEnumConverter))]
     public AccountHolderType? AccountHolderType { get; set; }
 }

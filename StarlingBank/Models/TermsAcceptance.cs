@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using StarlingBank.Utilities;
 
 namespace StarlingBank.Models;
@@ -9,7 +10,7 @@ public class TermsAcceptance
     /// <summary>
     /// The policy document which has been accepted
     /// </summary>
-    [JsonProperty("policyDocument", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("policyDocument", ItemConverterType = typeof(StringEnumConverter))]
     public PolicyDocument PolicyDocument { get; set; }
 
     /// <summary>

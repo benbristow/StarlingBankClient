@@ -141,9 +141,9 @@ public class StatementParameters
 
     /// <summary>
     /// Class StatementParametersValidator.
-    /// Implements the <see cref="FluentValidation.AbstractValidator{StarlingBank.Models.StatementParameters}" />
+    /// Implements the <see cref="StatementParameters" />
     /// </summary>
-    /// <seealso cref="FluentValidation.AbstractValidator{StarlingBank.Models.StatementParameters}" />
+    /// <seealso cref="StatementParameters" />
     public class StatementParametersValidator : AbstractValidator<StatementParameters>
     {
         /// <summary>

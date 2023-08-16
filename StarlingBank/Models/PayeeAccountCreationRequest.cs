@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -37,6 +38,6 @@ public class PayeeAccountCreationRequest
     /// <summary>
     /// The bank identifier type
     /// </summary>
-    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("bankIdentifierType", ItemConverterType = typeof(StringEnumConverter))]
     public BankIdentifierType BankIdentifierType { get; set; }
 }

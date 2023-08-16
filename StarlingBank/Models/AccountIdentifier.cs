@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace StarlingBank.Models;
 
@@ -8,7 +9,7 @@ namespace StarlingBank.Models;
 public class AccountIdentifier
 {
     /// <value>The type of the identifier.</value>
-    [JsonProperty("identifierType", ItemConverterType = typeof(StringValuedEnumConverter))]
+    [JsonProperty("identifierType", ItemConverterType = typeof(StringEnumConverter))]
     public IdentifierType? IdentifierType { get; set; }
 
     /// <summary>

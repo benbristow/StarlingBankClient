@@ -12,7 +12,6 @@ public class OnboardingServices : IOnboardingServices
     private readonly IHttpClientFactory _clientFactory;
     private readonly IBaseServices _baseServices;
 
-
     public OnboardingServices(IHttpClientFactory clientFactory, IBaseServices baseServices)
     {
         _clientFactory = clientFactory;
