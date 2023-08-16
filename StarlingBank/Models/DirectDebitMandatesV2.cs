@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public class DirectDebitMandatesV2
 {
-    public class DirectDebitMandatesV2
-    {
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("mandates")]
-        public List<DirectDebitMandateV2> Mandates { get; set; }
-    }
+    /// <summary>
+    /// TODO: Write general description for this method
+    /// </summary>
+    [JsonProperty("mandates")]
+    public List<DirectDebitMandateV2> Mandates { get; set; }
 }

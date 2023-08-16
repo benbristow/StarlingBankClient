@@ -1,20 +1,19 @@
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public enum ServerEnvironment
 {
-    public enum ServerEnvironment
-    {
-        /// <summary>
-        /// Not set defaults to the sandbox server environment
-        /// </summary>
-        NOT_SET,
+    /// <summary>
+    /// Not set defaults to the sandbox server environment
+    /// </summary>
+    NOT_SET,
 
-        /// <summary>
-        /// The sandbox server environment
-        /// </summary>
-        SANDBOX,
+    /// <summary>
+    /// The sandbox server environment
+    /// </summary>
+    SANDBOX,
 
-        /// <summary>
-        /// The production server environment
-        /// </summary>
-        PRODUCTION
-    }
+    /// <summary>
+    /// The production server environment
+    /// </summary>
+    PRODUCTION
 }

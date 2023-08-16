@@ -1,11 +1,10 @@
 using Newtonsoft.Json.Converters;
-namespace StarlingBank.Utilities
+namespace StarlingBank.Utilities;
+
+public class CustomDateTimeConverter : IsoDateTimeConverter
 {
-    public class CustomDateTimeConverter : IsoDateTimeConverter
+    public CustomDateTimeConverter(string format)
     {
-        public CustomDateTimeConverter(string format)
-        {
-            DateTimeFormat = format;
-        }
+        DateTimeFormat = format;
     }
 }

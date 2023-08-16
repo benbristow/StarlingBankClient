@@ -1,13 +1,12 @@
 using Newtonsoft.Json;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public class WithdrawalRequestV2
 {
-    public class WithdrawalRequestV2
-    {
-        /// <summary>
-        /// Representation of money
-        /// </summary>
-        [JsonProperty("amount")]
-        public CurrencyAndAmount Amount { get; set; }
-    }
+    /// <summary>
+    /// Representation of money
+    /// </summary>
+    [JsonProperty("amount")]
+    public CurrencyAndAmount Amount { get; set; }
 }

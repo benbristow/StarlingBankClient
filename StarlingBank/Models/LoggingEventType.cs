@@ -1,11 +1,10 @@
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public enum LoggingEventType
 {
-    public enum LoggingEventType
-    {
-        DEBUG,
-        INFORMATION,
-        WARNING,
-        ERROR,
-        FATAL
-    };
-}
+    DEBUG,
+    INFORMATION,
+    WARNING,
+    ERROR,
+    FATAL
+};

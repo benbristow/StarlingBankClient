@@ -1,7 +1,6 @@
-namespace StarlingBank.Services
+namespace StarlingBank.Services;
+
+public interface ILogger
 {
-    public interface ILogger
-    {
-        void Log(LogEntry entry);
-    }
+    void Log(LogEntry entry);
 }

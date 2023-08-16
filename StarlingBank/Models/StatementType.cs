@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public enum StatementType
 {
-    public enum StatementType
-    {
-        CSV,
-        PDF
-    }
+    CSV,
+    PDF
 }

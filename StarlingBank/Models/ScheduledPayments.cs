@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public class ScheduledPayments
 {
-    public class ScheduledPayments
-    {
-        /// <summary>
-        /// List of scheduled payments for a payee account
-        /// </summary>
-        [JsonProperty("scheduledPayments")]
-        public List<ScheduledPayment> ScheduledPaymentsValue { get; set; }
-    }
+    /// <summary>
+    /// List of scheduled payments for a payee account
+    /// </summary>
+    [JsonProperty("scheduledPayments")]
+    public List<ScheduledPayment> ScheduledPaymentsValue { get; set; }
 }

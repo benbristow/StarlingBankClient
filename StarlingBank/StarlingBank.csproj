@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>StarlingBank</AssemblyName>
-    <Version>1.1.0.0</Version>
-    <Authors>James Melvin</Authors>
+    <Version>1.0.0</Version>
+    <Authors>Ben Bristow</Authors>
     <Company>Netizine</Company>
     <Product>Starling Bank .NET Standard SDK</Product>
-    <Copyright>Copyright ©  2021</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <AssemblyVersion>1.1.0.0</AssemblyVersion>
     <FileVersion>1.1.0.0</FileVersion>
     <Description>An unofficial C# .NET Standard SDK for Starling Bank's API.</Description>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <PackageIcon>logo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>StarlingBank</PackageId>
-    <PackageProjectUrl>https://github.com/Netizine/StarlingBankClient</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/benbristow/StarlingBankClient</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Netizine/StarlingBankClient</RepositoryUrl>
     <RootNamespace>StarlingBank</RootNamespace>
+    <LangVersion>default</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Services\Http\**" />
@@ -30,20 +29,10 @@
     <Compile Remove="IClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\LICENSE.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="9.5.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 </Project>

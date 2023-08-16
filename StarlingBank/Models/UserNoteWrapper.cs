@@ -1,13 +1,12 @@
 using Newtonsoft.Json;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public class UserNoteWrapper
 {
-    public class UserNoteWrapper
-    {
-        /// <summary>
-        /// TODO: Write general description for this method
-        /// </summary>
-        [JsonProperty("userNote")]
-        public string UserNote { get; set; }
-    }
+    /// <summary>
+    /// TODO: Write general description for this method
+    /// </summary>
+    [JsonProperty("userNote")]
+    public string UserNote { get; set; }
 }

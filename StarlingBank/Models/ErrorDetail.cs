@@ -1,13 +1,12 @@
 using Newtonsoft.Json;
 
-namespace StarlingBank.Models
+namespace StarlingBank.Models;
+
+public class ErrorDetail
 {
-    public class ErrorDetail
-    {
-        /// <summary>
-        /// The error message
-        /// </summary>
-        [JsonProperty("message")]
-        public string Message { get; set; }
-    }
+    /// <summary>
+    /// The error message
+    /// </summary>
+    [JsonProperty("message")]
+    public string Message { get; set; }
 }
